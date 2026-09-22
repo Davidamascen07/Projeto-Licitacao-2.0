@@ -1,0 +1,14 @@
+[
+  {
+    "question": "Qual é o objeto da licitação?",
+    "expected_answer": "Descreva aqui a resposta esperada com base no edital de teste."
+  },
+  {
+    "question": "Qual é o valor estimado da licitação?",
+    "expected_answer": "Preencha com o valor esperado, conforme edital de teste."
+  },
+  {
+    "question": "Qual é o prazo de entrega da proposta?",
+    "expected_answer": "Preencha com o prazo esperado, conforme edital de teste."
+  }
+]

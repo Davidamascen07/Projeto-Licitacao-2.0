@@ -1,0 +1,7 @@
+{
+  "schema_version": "2.0",
+  "metric": "cosine_ip_normalized",
+  "dimension": 384,
+  "vector_count": 1064,
+  "updated_at": "2026-07-23T17:40:36.449930+00:00"
+}

@@ -1,0 +1,95 @@
+"""Taxonomia auditável para decisões de campos cadastrais do RAG."""
+
+from __future__ import annotations
+
+from typing import Any
+
+
+FOUND = "FOUND"
+NOT_APPLICABLE = "NOT_APPLICABLE"
+ACTUALLY_ABSENT = "ACTUALLY_ABSENT"
+FIELD_PRESENT_RETRIEVAL_MISS = "FIELD_PRESENT_RETRIEVAL_MISS"
+FIELD_PRESENT_RANKING_MISS = "FIELD_PRESENT_RANKING_MISS"
+FIELD_PRESENT_SECTION_EXPANSION_MISS = "FIELD_PRESENT_SECTION_EXPANSION_MISS"
+FIELD_PRESENT_CONTEXT_TRUNCATION = "FIELD_PRESENT_CONTEXT_TRUNCATION"
+FIELD_PRESENT_PARSER_MISS = "FIELD_PRESENT_PARSER_MISS"
+FIELD_PRESENT_VALIDATION_MISS = "FIELD_PRESENT_VALIDATION_MISS"
+FIELD_PRESENT_IN_TABLE = "FIELD_PRESENT_IN_TABLE"
+FIELD_PRESENT_IN_ANNEX = "FIELD_PRESENT_IN_ANNEX"
+FIELD_CONFIDENTIAL = "FIELD_CONFIDENTIAL"
+FIELD_VARIABLE_BY_ITEM = "FIELD_VARIABLE_BY_ITEM"
+DOCUMENT_TEXT_INSUFFICIENT = "DOCUMENT_TEXT_INSUFFICIENT"
+UNRESOLVED = "UNRESOLVED"
+
+INTERNAL_STATUSES = {
+    FOUND,
+    NOT_APPLICABLE,
+    ACTUALLY_ABSENT,
+    FIELD_PRESENT_RETRIEVAL_MISS,
+    FIELD_PRESENT_RANKING_MISS,
+    FIELD_PRESENT_SECTION_EXPANSION_MISS,
+    FIELD_PRESENT_CONTEXT_TRUNCATION,
+    FIELD_PRESENT_PARSER_MISS,
+    FIELD_PRESENT_VALIDATION_MISS,
+    FIELD_PRESENT_IN_TABLE,
+    FIELD_PRESENT_IN_ANNEX,
+    FIELD_CONFIDENTIAL,
+    FIELD_VARIABLE_BY_ITEM,
+    DOCUMENT_TEXT_INSUFFICIENT,
+    UNRESOLVED,
+}
+
+EXTERNAL_STATUS_BY_INTERNAL = {
+    FOUND: "FOUND",
+    FIELD_CONFIDENTIAL: "FOUND",
+    NOT_APPLICABLE: "NOT_APPLICABLE",
+    ACTUALLY_ABSENT: "NOT_FOUND",
+    FIELD_VARIABLE_BY_ITEM: "CONTEXT_DEPENDENT",
+    FIELD_PRESENT_IN_TABLE: "NOT_FOUND",
+    FIELD_PRESENT_IN_ANNEX: "NOT_FOUND",
+    DOCUMENT_TEXT_INSUFFICIENT: "UNRESOLVED",
+    UNRESOLVED: "UNRESOLVED",
+}
+
+FAILURE_STAGE_BY_INTERNAL = {
+    FIELD_PRESENT_RETRIEVAL_MISS: "RETRIEVAL",
+    FIELD_PRESENT_RANKING_MISS: "RANKING",
+    FIELD_PRESENT_SECTION_EXPANSION_MISS: "SECTION_EXPANSION",
+    FIELD_PRESENT_CONTEXT_TRUNCATION: "EXCERPT_SELECTION",
+    FIELD_PRESENT_PARSER_MISS: "DETERMINISTIC_PARSER",
+    FIELD_PRESENT_VALIDATION_MISS: "EVIDENCE_VALIDATION",
+    FIELD_PRESENT_IN_TABLE: "TABLE_EXTRACTION",
+    FIELD_PRESENT_IN_ANNEX: "ANNEX_DISCOVERY",
+    DOCUMENT_TEXT_INSUFFICIENT: "DOCUMENT_TEXT",
+}
+
+
+def external_status(internal_status: str) -> str:
+    if internal_status not in INTERNAL_STATUSES:
+        raise ValueError(f"Status interno desconhecido: {internal_status}")
+    return EXTERNAL_STATUS_BY_INTERNAL.get(internal_status, "NOT_FOUND")
+
+
+def decision_payload(
+    *,
+    field: str,
+    internal_status: str,
+    reason: str,
+    value: str = "",
+    evidence: dict[str, Any] | None = None,
+    **details: Any,
+) -> dict[str, Any]:
+    """Monta uma decisão uniforme sem apagar o diagnóstico interno."""
+    if internal_status not in INTERNAL_STATUSES:
+        raise ValueError(f"Status interno desconhecido: {internal_status}")
+    return {
+        "field": field,
+        "final_status": external_status(internal_status),
+        "internal_status": internal_status,
+        "failure_stage": FAILURE_STAGE_BY_INTERNAL.get(internal_status),
+        "reason": reason,
+        "value": value,
+        "evidence": evidence or {},
+        **details,
+    }
+

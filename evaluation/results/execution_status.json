@@ -1,0 +1,30 @@
+{
+  "status": "completed",
+  "completed_at": "2026-07-22T23:04:38Z",
+  "model": "openai/gpt-oss-120b",
+  "plan": "Groq free tier",
+  "development": {
+    "rows": 294,
+    "expected_rows": 294,
+    "ragas_scored_rows": 59,
+    "selected_config_id": "chunk500_overlap50_topk3"
+  },
+  "test": {
+    "rows": 27,
+    "expected_rows": 27,
+    "ragas_scored_rows": 6
+  },
+  "hypothesis": {
+    "conclusion": "parcialmente_confirmada",
+    "faithfulness": 1.0,
+    "answer_correctness": 0.8468791356479632,
+    "hallucination_rate": 0.5,
+    "answered_fields": 2,
+    "sample_rows": 9
+  },
+  "generation_usage": {
+    "tokens": 245396,
+    "estimated_on_demand_cost_usd": 0.04647225,
+    "note": "RAGAS internal evaluator usage is not included. The experiment ran on the free plan."
+  }
+}

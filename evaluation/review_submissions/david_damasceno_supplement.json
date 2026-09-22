@@ -1,0 +1,59 @@
+{
+  "reviewer": "david_damasceno",
+  "documents": [
+    {
+      "document_id": "f7463e4e3b5ac2687850a83588cfffb438244a358e73619c871f8ab3611b190c",
+      "filename": "Edital.pdf",
+      "references": {
+        "valor_estimado": {
+          "value": 650000.0,
+          "page": 2,
+          "evidence_text": "O valor total estimado para o presente credenciamento é de R$650.000,00 (Seiscentos e cinquenta mil reais)"
+        },
+        "prazo_entrega_proposta": {
+          "value": "12 meses a contar da publicação do aviso de credenciamento",
+          "page": 1,
+          "evidence_text": "O edital credenciamento permanecerá aberto por 12 (doze) meses a contar da publicação do aviso de credenciamento"
+        }
+      }
+    },
+    {
+      "document_id": "e3a260a4e794a222785c34b6da2d7f111e75f333c99e64553b6ff62701800e7f",
+      "filename": "EDITAL_CC006.pdf",
+      "references": {
+        "valor_estimado": {
+          "value": 874905.54,
+          "page": 47,
+          "evidence_text": "VALOR TOTAL:] R$ 874.905,54"
+        }
+      }
+    },
+    {
+      "document_id": "c44dc4318cdfb240ea6a0818d3a1e2ebad0fa317bf1cfdf2603b5719aeb4760f",
+      "filename": "EDITAL_DE_CREDENCIAMENTO_004.2025_assinado.pdf",
+      "metadata": {
+        "orgao": "Fundo Municipal de Saúde de Bela Vista de Goiás",
+        "uf": "GO",
+        "modalidade": "credenciamento"
+      },
+      "references": {
+        "valor_estimado": {
+          "value": null,
+          "page": 2,
+          "evidence_text": "Os valores a serem pagos conforme a prestação dos serviços serão os constantes do ANEXO V, da tabela de cargos, vagas, atribuições genéricas, valores e carga horária dos serviços a serem prestados, devidamente aprovados pelo Conselho Municipal de Saúde",
+          "note": "O edital não apresenta valor global ou total estimado; os valores individuais não foram somados."
+        },
+        "modalidade": {
+          "value": "credenciamento",
+          "page": 1,
+          "evidence_text": "EDITAL DE CHAMAMENTO PÚBLICO PARA CREDENCIAMENTO Nº 004/2025"
+        },
+        "prazo_entrega_proposta": {
+          "value": "2026-12-31",
+          "page": 2,
+          "evidence_text": "Os interessados poderão realizar inscrição até 31 de Dezembro de 2026, admitindo-se a apresentação de documentos a qualquer tempo até a data indicada"
+        }
+      }
+    }
+  ]
+}

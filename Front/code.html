@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Agente Autônomo para Análise de Editais</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Inter & JetBrains Mono -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill {
+            font-variation-settings: 'FILL' 1;
+        }
+        /* Custom scrollbar for professional look */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        .evidence-tag {
+            border-left: 3px solid #1e293b;
+            padding-left: 12px;
+            margin-top: 8px;
+            font-style: italic;
+            color: #475569;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface-variant": "#45474c",
+                        "tertiary-container": "#35260c",
+                        "surface-dim": "#cbdbf5",
+                        "surface-tint": "#545f73",
+                        "secondary": "#5c5f61",
+                        "tertiary-fixed-dim": "#ddc39d",
+                        "outline": "#75777d",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#eff4ff",
+                        "error": "#ba1a1a",
+                        "on-error": "#ffffff",
+                        "on-surface": "#0b1c30",
+                        "on-secondary": "#ffffff",
+                        "on-background": "#0b1c30",
+                        "on-tertiary-fixed": "#271902",
+                        "on-tertiary-fixed-variant": "#564427",
+                        "on-secondary-fixed": "#191c1e",
+                        "on-tertiary-container": "#a38c6a",
+                        "on-primary-fixed": "#111c2d",
+                        "surface-bright": "#f8f9ff",
+                        "error-container": "#ffdad6",
+                        "primary-fixed": "#d8e3fb",
+                        "inverse-surface": "#213145",
+                        "inverse-primary": "#bcc7de",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed-variant": "#3c475a",
+                        "tertiary-fixed": "#fadfb8",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed-dim": "#bcc7de",
+                        "surface-container-high": "#dce9ff",
+                        "primary-container": "#1e293b",
+                        "outline-variant": "#c5c6cd",
+                        "secondary-fixed-dim": "#c4c7c9",
+                        "surface-container": "#e5eeff",
+                        "secondary-fixed": "#e0e3e5",
+                        "on-secondary-container": "#626567",
+                        "on-secondary-fixed-variant": "#444749",
+                        "surface-variant": "#d3e4fe",
+                        "on-primary-container": "#8590a6",
+                        "surface-container-highest": "#d3e4fe",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-error-container": "#93000a",
+                        "tertiary": "#1e1200",
+                        "secondary-container": "#e0e3e5",
+                        "primary": "#091426",
+                        "background": "#f8f9ff",
+                        "surface": "#f8f9ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "xl": "32px",
+                        "container-padding": "24px",
+                        "base": "4px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "xs": "4px",
+                        "panel-gap": "1px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-sm": ["Inter"],
+                        "mono-md": ["JetBrains Mono"],
+                        "body-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-sm": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "mono-md": ["13px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-sm": ["12px", {"lineHeight": "18px", "fontWeight": "400"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "label-md": ["13px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-primary border-b border-outline-variant dark:border-on-primary-container flex justify-between items-center w-full px-lg py-md h-16 fixed top-0 z-50">
+<div class="flex items-center gap-md">
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-on-primary">Agente Autônomo para Análise de Editais</span>
+</div>
+<div class="hidden sm:flex items-center gap-sm text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]" data-icon="verified">verified</span>
+<span>Consulta com evidências do edital</span>
+</div>
+</header>
+<!-- Main Content Layout -->
+<main class="flex-grow pt-24 pb-12 px-lg max-w-[1600px] mx-auto w-full grid grid-cols-1 md:grid-cols-12 gap-lg overflow-hidden">
+<!-- Left Column: Upload & Status -->
+<aside class="md:col-span-4 space-y-lg flex flex-col">
+<!-- Upload Card -->
+<section class="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl shadow-sm flex flex-col gap-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="upload_file">upload_file</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Upload de Edital</h2>
+</div>
+<form class="space-y-md" id="uploadForm">
+<div class="group relative flex flex-col items-center justify-center border-2 border-dashed border-outline-variant rounded-lg p-lg hover:border-primary transition-colors cursor-pointer bg-surface-container-low" id="dropzone">
+<input accept=".pdf" class="absolute inset-0 opacity-0 cursor-pointer" id="pdfFile" required="" type="file"/>
+<span class="material-symbols-outlined text-4xl text-outline mb-sm" data-icon="cloud_upload">cloud_upload</span>
+<p class="text-body-sm text-on-surface-variant text-center" id="fileNameDisplay">Arraste seu PDF aqui ou clique para selecionar</p>
+<p class="text-body-sm text-on-surface-variant/70 text-center mt-xs">Formato aceito: PDF</p>
+</div>
+<button class="w-full bg-primary-container text-on-primary font-label-md py-md rounded-lg hover:opacity-90 active:scale-95 transition-all flex justify-center items-center gap-sm disabled:opacity-50 disabled:cursor-not-allowed" id="uploadBtn" type="submit">
+<span>Enviar edital</span>
+<span class="hidden material-symbols-outlined animate-spin" data-icon="progress_activity" id="uploadSpinner">progress_activity</span>
+</button>
+</form>
+<div class="hidden text-body-sm font-medium p-sm rounded border" id="uploadFeedback"></div>
+</section>
+<!-- Status Card -->
+<section class="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl shadow-sm flex flex-col gap-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="query_stats">query_stats</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Status do Sistema</h2>
+</div>
+<div class="space-y-sm">
+<div class="flex justify-between items-center py-xs border-b border-outline-variant">
+<span class="text-on-surface-variant text-body-md">Trechos Carregados:</span>
+<span class="font-mono-md text-mono-md text-primary" id="statusChunks">-</span>
+</div>
+<div class="flex justify-between items-center py-xs border-b border-outline-variant">
+<span class="text-on-surface-variant text-body-md">Vetores no Índice:</span>
+<span class="font-mono-md text-mono-md text-primary" id="statusVectors">-</span>
+</div>
+<div class="flex justify-between items-center py-xs">
+<span class="text-on-surface-variant text-body-md">Status do Índice:</span>
+<span class="font-label-md text-label-md px-sm py-xs bg-error-container text-on-error-container rounded-full" id="statusIndex">Não carregado</span>
+</div>
+</div>
+<button class="mt-md flex items-center justify-center gap-xs text-primary font-label-md hover:underline active:scale-95 transition-transform" id="refreshStatus">
+<span class="material-symbols-outlined text-[18px]" data-icon="refresh">refresh</span>
+                    Atualizar Status
+                </button>
+</section>
+<!-- Target Fields Card -->
+<section class="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl shadow-sm flex flex-col gap-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="fact_check">fact_check</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Campos-alvo</h2>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 gap-sm">
+<div class="flex items-center justify-between border-b border-outline-variant pb-xs"><span class="text-body-md text-on-surface-variant">Objeto</span><span class="text-body-sm text-outline">consulta</span></div>
+<div class="flex items-center justify-between border-b border-outline-variant pb-xs"><span class="text-body-md text-on-surface-variant">Modalidade</span><span class="text-body-sm text-outline">extração</span></div>
+<div class="flex items-center justify-between border-b border-outline-variant pb-xs"><span class="text-body-md text-on-surface-variant">Valor estimado</span><span class="text-body-sm text-outline">evidência</span></div>
+<div class="flex items-center justify-between border-b border-outline-variant pb-xs"><span class="text-body-md text-on-surface-variant">Prazo da proposta</span><span class="text-body-sm text-outline">RAG</span></div>
+<div class="flex items-center justify-between border-b border-outline-variant pb-xs"><span class="text-body-md text-on-surface-variant">Critério de julgamento</span><span class="text-body-sm text-outline">consulta</span></div>
+<div class="flex items-center justify-between"><span class="text-body-md text-on-surface-variant">Habilitação</span><span class="text-body-sm text-outline">checklist</span></div>
+</div>
+</section>
+</aside>
+<!-- Right Column: Chat Section -->
+<article class="md:col-span-8 flex flex-col h-[calc(100vh-12rem)] bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm">
+<!-- Chat Header -->
+<div class="p-md border-b border-outline-variant flex justify-between items-center">
+<h3 class="font-headline-sm text-headline-sm text-primary flex items-center gap-sm">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+                    Interface de Consulta
+                </h3>
+<span class="text-body-sm text-on-surface-variant">Análise assistida por IA</span>
+</div>
+<!-- Results Area -->
+<div class="flex-grow overflow-y-auto p-lg space-y-lg bg-surface-bright/50" id="resultsArea">
+<div class="flex flex-col items-center justify-center h-full text-center space-y-md opacity-40">
+<span class="material-symbols-outlined text-6xl" data-icon="summarize">summarize</span>
+<p class="text-body-lg">Faça o upload de um edital e realize perguntas específicas para obter respostas com evidências.</p>
+</div>
+</div>
+<!-- Suggestions -->
+<div class="p-md border-t border-outline-variant">
+<div class="flex flex-wrap gap-sm">
+<button class="suggestion-chip px-md py-sm bg-surface-container-high text-on-surface-variant text-body-sm rounded-full hover:bg-primary-container hover:text-on-primary transition-all active:scale-95">Objeto da licitação?</button>
+<button class="suggestion-chip px-md py-sm bg-surface-container-high text-on-surface-variant text-body-sm rounded-full hover:bg-primary-container hover:text-on-primary transition-all active:scale-95">Valor estimado?</button>
+<button class="suggestion-chip px-md py-sm bg-surface-container-high text-on-surface-variant text-body-sm rounded-full hover:bg-primary-container hover:text-on-primary transition-all active:scale-95">Modalidade?</button>
+<button class="suggestion-chip px-md py-sm bg-surface-container-high text-on-surface-variant text-body-sm rounded-full hover:bg-primary-container hover:text-on-primary transition-all active:scale-95">Prazo de entrega?</button>
+<button class="suggestion-chip px-md py-sm bg-surface-container-high text-on-surface-variant text-body-sm rounded-full hover:bg-primary-container hover:text-on-primary transition-all active:scale-95">Requisitos de habilitação?</button>
+</div>
+</div>
+<!-- Query Input -->
+<div class="p-lg bg-surface-container-low rounded-b-xl border-t border-outline-variant">
+<form class="flex gap-md items-end" id="queryForm">
+<div class="flex-grow relative">
+<textarea class="w-full bg-surface-container-lowest border border-outline-variant rounded-xl p-md pr-12 focus:ring-2 focus:ring-primary focus:border-primary transition-all resize-none text-body-md" id="queryInput" placeholder="Pergunte qualquer detalhe sobre o edital..." required="" rows="1"></textarea>
+<div class="absolute right-md bottom-1/2 translate-y-1/2 text-outline">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</div>
+</div>
+<button class="bg-primary-container text-on-primary h-12 px-xl rounded-xl font-label-md hover:opacity-90 active:scale-95 transition-all flex items-center gap-sm disabled:opacity-50" id="queryBtn" type="submit">
+<span>Perguntar</span>
+<span class="hidden material-symbols-outlined animate-spin text-[18px]" data-icon="sync" id="querySpinner">sync</span>
+</button>
+</form>
+</div>
+</article>
+</main>
+<!-- Footer -->
+<footer class="bg-surface dark:bg-primary border-t border-outline-variant dark:border-on-primary-container flex justify-between items-center w-full px-lg py-sm h-12 mt-auto">
+<p class="font-body-sm text-body-sm text-secondary dark:text-on-primary-container">Projeto acadêmico - Análise de Editais com RAG e LLM</p>
+<div class="flex gap-md">
+<a class="text-on-surface-variant dark:text-on-primary-container hover:text-primary dark:hover:text-on-primary transition-colors font-body-sm text-body-sm" href="#">Termos</a>
+<a class="text-on-surface-variant dark:text-on-primary-container hover:text-primary dark:hover:text-on-primary transition-colors font-body-sm text-body-sm" href="#">Documentação</a>
+</div>
+</footer>
+<script>
+        // DOM Elements
+        const pdfInput = document.getElementById('pdfFile');
+        const fileNameDisplay = document.getElementById('fileNameDisplay');
+        const uploadForm = document.getElementById('uploadForm');
+        const uploadBtn = document.getElementById('uploadBtn');
+        const uploadSpinner = document.getElementById('uploadSpinner');
+        const uploadFeedback = document.getElementById('uploadFeedback');
+        const resultsArea = document.getElementById('resultsArea');
+        const queryForm = document.getElementById('queryForm');
+        const queryInput = document.getElementById('queryInput');
+        const queryBtn = document.getElementById('queryBtn');
+        const querySpinner = document.getElementById('querySpinner');
+        const statusChunks = document.getElementById('statusChunks');
+        const statusVectors = document.getElementById('statusVectors');
+        const statusIndex = document.getElementById('statusIndex');
+        const refreshStatusBtn = document.getElementById('refreshStatus');
+        const suggestionChips = document.querySelectorAll('.suggestion-chip');
+
+        // Initial Status Fetch
+        window.addEventListener('load', fetchStatus);
+        refreshStatusBtn.addEventListener('click', fetchStatus);
+
+        async function fetchStatus() {
+            try {
+                const response = await fetch('/status');
+                if (!response.ok) throw new Error('Falha ao consultar status');
+                const data = await response.json();
+
+                const chunks = Number(data.chunks || 0);
+                const vectors = Number(data.vetores_no_indice || data.vectors || 0);
+                const hasIndex = Boolean(data.index_existe);
+
+                statusChunks.textContent = chunks;
+                statusVectors.textContent = vectors;
+
+                if (hasIndex && chunks > 0 && vectors > 0) {
+                    statusIndex.textContent = 'Carregado';
+                    statusIndex.className = 'font-label-md text-label-md px-sm py-xs bg-emerald-100 text-emerald-800 rounded-full';
+                } else if (hasIndex) {
+                    statusIndex.textContent = 'Sem edital';
+                    statusIndex.className = 'font-label-md text-label-md px-sm py-xs bg-amber-100 text-amber-800 rounded-full';
+                } else {
+                    statusIndex.textContent = 'Não carregado';
+                    statusIndex.className = 'font-label-md text-label-md px-sm py-xs bg-error-container text-on-error-container rounded-full';
+                }
+            } catch (err) {
+                console.error('Status fetch failed', err);
+                statusIndex.textContent = 'Indisponível';
+                statusIndex.className = 'font-label-md text-label-md px-sm py-xs bg-error-container text-on-error-container rounded-full';
+            }
+        }
+
+        // Upload Logic
+        pdfInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                fileNameDisplay.textContent = file.name;
+                fileNameDisplay.classList.add('text-primary', 'font-semibold');
+            } else {
+                fileNameDisplay.textContent = 'Arraste seu PDF aqui ou clique para selecionar';
+                fileNameDisplay.classList.remove('text-primary', 'font-semibold');
+            }
+        });
+
+        uploadForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const file = pdfInput.files[0];
+            if (!file) return;
+
+            uploadBtn.disabled = true;
+            uploadSpinner.classList.remove('hidden');
+            uploadFeedback.classList.add('hidden');
+
+            const formData = new FormData();
+            formData.append('file', file);
+
+            try {
+                const response = await fetch('/upload_pdf', {
+                    method: 'POST',
+                    body: formData
+                });
+                const data = await response.json().catch(() => ({}));
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'Erro ao carregar o edital.');
+                }
+
+                uploadFeedback.textContent = data.message || 'Edital carregado e indexado com sucesso!';
+                uploadFeedback.className = 'text-body-sm font-medium p-sm rounded border border-emerald-200 bg-emerald-50 text-emerald-800 block';
+                fetchStatus();
+            } catch (err) {
+                uploadFeedback.textContent = err.message || 'Erro ao carregar o edital. Tente novamente.';
+                uploadFeedback.className = 'text-body-sm font-medium p-sm rounded border border-red-200 bg-red-50 text-red-800 block';
+            } finally {
+                uploadBtn.disabled = false;
+                uploadSpinner.classList.add('hidden');
+            }
+        });
+
+        // Query Logic
+        queryForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const query = queryInput.value.trim();
+            if (!query) return;
+
+            submitQuery(query);
+        });
+
+        suggestionChips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                const text = chip.textContent;
+                queryInput.value = text;
+                submitQuery(text);
+            });
+        });
+
+        async function submitQuery(queryText) {
+            if (resultsArea.querySelector('.text-center')) {
+                resultsArea.innerHTML = '';
+            }
+
+            appendMessage('user', queryText);
+            
+            queryBtn.disabled = true;
+            querySpinner.classList.remove('hidden');
+            queryInput.value = '';
+
+            try {
+                const response = await fetch('/query', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({query: queryText})
+                });
+                const data = await response.json().catch(() => ({}));
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'Erro ao processar a consulta.');
+                }
+
+                appendMessage('agent', data.response || 'Informação não encontrada nos trechos disponíveis.');
+            } catch (err) {
+                appendMessage('agent', err.message || 'Desculpe, ocorreu um erro ao processar sua consulta.');
+            } finally {
+                queryBtn.disabled = false;
+                querySpinner.classList.add('hidden');
+                resultsArea.scrollTop = resultsArea.scrollHeight;
+            }
+        }
+
+        function appendMessage(role, text) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `p-lg rounded-xl max-w-[85%] ${role === 'user' ? 'ml-auto bg-primary-container text-on-primary' : 'bg-surface-container-high border border-outline-variant text-on-surface'}`;
+
+            const wrapper = document.createElement('div');
+            wrapper.className = 'flex flex-col gap-xs';
+
+            const label = document.createElement('span');
+            label.className = role === 'user'
+                ? 'text-xs uppercase opacity-60 font-bold'
+                : 'text-xs uppercase text-primary font-bold';
+            label.textContent = role === 'user' ? 'Pergunta' : 'Resposta do Agente';
+            wrapper.appendChild(label);
+
+            if (role === 'user') {
+                const paragraph = document.createElement('p');
+                paragraph.className = 'whitespace-pre-wrap';
+                paragraph.textContent = text;
+                wrapper.appendChild(paragraph);
+            } else {
+                const lines = String(text).split('\n');
+                let buffer = [];
+
+                function flushBuffer() {
+                    if (!buffer.length) return;
+                    const block = document.createElement('div');
+                    block.className = 'whitespace-pre-wrap';
+                    block.textContent = buffer.join('\n').trim();
+                    wrapper.appendChild(block);
+                    buffer = [];
+                }
+
+                lines.forEach((line) => {
+                    if (/^\s*evid[e\u00ea]ncia\s*:/i.test(line)) {
+                        flushBuffer();
+                        const evidence = document.createElement('div');
+                        evidence.className = 'evidence-tag';
+                        evidence.textContent = line.trim();
+                        wrapper.appendChild(evidence);
+                    } else {
+                        buffer.push(line);
+                    }
+                });
+                flushBuffer();
+            }
+
+            msgDiv.appendChild(wrapper);
+            resultsArea.appendChild(msgDiv);
+            resultsArea.scrollTop = resultsArea.scrollHeight;
+        }
+
+        // Auto-resize textarea
+        queryInput.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + 'px';
+            if (parseInt(this.style.height) > 200) {
+                this.style.overflowY = 'auto';
+                this.style.height = '200px';
+            } else {
+                this.style.overflowY = 'hidden';
+            }
+        });
+    </script>
+</body></html>

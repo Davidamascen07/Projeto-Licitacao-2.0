@@ -1,0 +1,109 @@
+{
+  "generated_at": "2026-07-22T23:04:23.969275+00:00",
+  "counts": {
+    "modalidade_incorreta": 3,
+    "campo_ausente_ou_nao_extraido": 21
+  },
+  "examples": {
+    "modalidade_incorreta": [
+      {
+        "document_id": "6b421ecc10a1e7fe2fc15a215008dcbee2322078ec20bd749eb9f9c6bd924594",
+        "filename": "edital609.pdf",
+        "field": "modalidade",
+        "approach": "regex",
+        "config_id": "baseline_regex",
+        "value": "LEILÃO",
+        "reference_value": "leilão eletrônico",
+        "page": "1",
+        "evidence_text": "LEILÃO",
+        "validation_error": null
+      },
+      {
+        "document_id": "e3a260a4e794a222785c34b6da2d7f111e75f333c99e64553b6ff62701800e7f",
+        "filename": "EDITAL_CC006.pdf",
+        "field": "modalidade",
+        "approach": "regex",
+        "config_id": "baseline_regex",
+        "value": "CONCORRÊNCIA",
+        "reference_value": "concorrência eletrônica",
+        "page": "1",
+        "evidence_text": "CONCORRÊNCIA",
+        "validation_error": null
+      },
+      {
+        "document_id": "6b421ecc10a1e7fe2fc15a215008dcbee2322078ec20bd749eb9f9c6bd924594",
+        "filename": "edital609.pdf",
+        "field": "modalidade",
+        "approach": "rag",
+        "config_id": "chunk500_overlap50_topk3",
+        "value": "LEILÃO ELETRÔNICO, do tipo MAIOR LANCE",
+        "reference_value": "leilão eletrônico",
+        "page": "13-14",
+        "evidence_text": "modalidade LEILÃO ELETRÔNICO, do tipo MAIOR LANCE",
+        "validation_error": null
+      }
+    ],
+    "campo_ausente_ou_nao_extraido": [
+      {
+        "document_id": "6b421ecc10a1e7fe2fc15a215008dcbee2322078ec20bd749eb9f9c6bd924594",
+        "filename": "edital609.pdf",
+        "field": "valor_estimado",
+        "approach": "regex",
+        "config_id": "baseline_regex",
+        "value": "Informação não encontrada nos trechos disponíveis.",
+        "reference_value": 2321000.0,
+        "page": null,
+        "evidence_text": null,
+        "validation_error": "regex_no_match"
+      },
+      {
+        "document_id": "6b421ecc10a1e7fe2fc15a215008dcbee2322078ec20bd749eb9f9c6bd924594",
+        "filename": "edital609.pdf",
+        "field": "prazo_entrega_proposta",
+        "approach": "regex",
+        "config_id": "baseline_regex",
+        "value": "Informação não encontrada nos trechos disponíveis.",
+        "reference_value": "2026-08-17 10:30:00",
+        "page": null,
+        "evidence_text": null,
+        "validation_error": "regex_no_match"
+      },
+      {
+        "document_id": "c44dc4318cdfb240ea6a0818d3a1e2ebad0fa317bf1cfdf2603b5719aeb4760f",
+        "filename": "EDITAL_DE_CREDENCIAMENTO_004.2025_assinado.pdf",
+        "field": "valor_estimado",
+        "approach": "regex",
+        "config_id": "baseline_regex",
+        "value": "Informação não encontrada nos trechos disponíveis.",
+        "reference_value": null,
+        "page": null,
+        "evidence_text": null,
+        "validation_error": "regex_no_match"
+      },
+      {
+        "document_id": "c44dc4318cdfb240ea6a0818d3a1e2ebad0fa317bf1cfdf2603b5719aeb4760f",
+        "filename": "EDITAL_DE_CREDENCIAMENTO_004.2025_assinado.pdf",
+        "field": "prazo_entrega_proposta",
+        "approach": "regex",
+        "config_id": "baseline_regex",
+        "value": "Informação não encontrada nos trechos disponíveis.",
+        "reference_value": "2026-12-31",
+        "page": null,
+        "evidence_text": null,
+        "validation_error": "regex_no_match"
+      },
+      {
+        "document_id": "e3a260a4e794a222785c34b6da2d7f111e75f333c99e64553b6ff62701800e7f",
+        "filename": "EDITAL_CC006.pdf",
+        "field": "valor_estimado",
+        "approach": "regex",
+        "config_id": "baseline_regex",
+        "value": "Informação não encontrada nos trechos disponíveis.",
+        "reference_value": 874905.54,
+        "page": null,
+        "evidence_text": null,
+        "validation_error": "regex_no_match"
+      }
+    ]
+  }
+}

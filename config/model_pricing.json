@@ -1,0 +1,11 @@
+{
+  "openai/gpt-oss-120b": {
+    "input_per_million_tokens": 0.15,
+    "cached_input_per_million_tokens": 0.075,
+    "output_per_million_tokens": 0.60,
+    "currency": "USD",
+    "pricing_source": "https://groq.com/pricing",
+    "pricing_checked_at": "2026-07-21",
+    "pricing_note": "On-demand uncached input and output rates; cached input discount is recorded separately."
+  }
+}

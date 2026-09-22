@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Agente Autônomo para Análise de Editais</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Inter & JetBrains Mono -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill {
+            font-variation-settings: 'FILL' 1;
+        }
+        /* Custom scrollbar for professional look */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        .evidence-tag {
+            border-left: 3px solid #1e293b;
+            padding-left: 12px;
+            margin-top: 8px;
+            font-style: italic;
+            color: #475569;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface-variant": "#45474c",
+                        "tertiary-container": "#35260c",
+                        "surface-dim": "#cbdbf5",
+                        "surface-tint": "#545f73",
+                        "secondary": "#5c5f61",
+                        "tertiary-fixed-dim": "#ddc39d",
+                        "outline": "#75777d",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#eff4ff",
+                        "error": "#ba1a1a",
+                        "on-error": "#ffffff",
+                        "on-surface": "#0b1c30",
+                        "on-secondary": "#ffffff",
+                        "on-background": "#0b1c30",
+                        "on-tertiary-fixed": "#271902",
+                        "on-tertiary-fixed-variant": "#564427",
+                        "on-secondary-fixed": "#191c1e",
+                        "on-tertiary-container": "#a38c6a",
+                        "on-primary-fixed": "#111c2d",
+                        "surface-bright": "#f8f9ff",
+                        "error-container": "#ffdad6",
+                        "primary-fixed": "#d8e3fb",
+                        "inverse-surface": "#213145",
+                        "inverse-primary": "#bcc7de",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed-variant": "#3c475a",
+                        "tertiary-fixed": "#fadfb8",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed-dim": "#bcc7de",
+                        "surface-container-high": "#dce9ff",
+                        "primary-container": "#1e293b",
+                        "outline-variant": "#c5c6cd",
+                        "secondary-fixed-dim": "#c4c7c9",
+                        "surface-container": "#e5eeff",
+                        "secondary-fixed": "#e0e3e5",
+                        "on-secondary-container": "#626567",
+                        "on-secondary-fixed-variant": "#444749",
+                        "surface-variant": "#d3e4fe",
+                        "on-primary-container": "#8590a6",
+                        "surface-container-highest": "#d3e4fe",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-error-container": "#93000a",
+                        "tertiary": "#1e1200",
+                        "secondary-container": "#e0e3e5",
+                        "primary": "#091426",
+                        "background": "#f8f9ff",
+                        "surface": "#f8f9ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "xl": "32px",
+                        "container-padding": "24px",
+                        "base": "4px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "xs": "4px",
+                        "panel-gap": "1px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-sm": ["Inter"],
+                        "mono-md": ["JetBrains Mono"],
+                        "body-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-sm": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "mono-md": ["13px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-sm": ["12px", {"lineHeight": "18px", "fontWeight": "400"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "label-md": ["13px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-primary border-b border-outline-variant dark:border-on-primary-container flex justify-between items-center w-full px-lg py-md h-16 fixed top-0 z-50">
+<div class="flex items-center gap-md">
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-on-primary">Agente Autônomo para Análise de Editais</span>
+</div>
+<div class="hidden sm:flex items-center gap-sm text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]" data-icon="verified">verified</span>
+<span>Consulta com evidências do edital</span>
+</div>
+</header>
+<!-- Main Content Layout -->
+<main class="flex-grow pt-24 pb-12 px-lg max-w-[1600px] mx-auto w-full grid grid-cols-1 md:grid-cols-12 gap-lg">
+<!-- Left Column: Upload & Status -->
+<aside class="md:col-span-4 space-y-lg flex flex-col">
+<!-- Upload Card -->
+<section class="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl shadow-sm flex flex-col gap-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="upload_file">upload_file</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Upload de Edital</h2>
+</div>
+<form class="space-y-md" id="uploadForm">
+<div class="group relative flex flex-col items-center justify-center border-2 border-dashed border-outline-variant rounded-lg p-lg hover:border-primary transition-colors cursor-pointer bg-surface-container-low" id="dropzone">
+<input accept=".pdf,application/pdf" aria-label="Selecionar edital em PDF" class="absolute inset-0 opacity-0 cursor-pointer" id="pdfFile" required="" type="file"/>
+<span class="material-symbols-outlined text-4xl text-outline mb-sm" data-icon="cloud_upload">cloud_upload</span>
+<p class="text-body-sm text-on-surface-variant text-center" id="fileNameDisplay">Arraste seu PDF aqui ou clique para selecionar</p>
+<p class="text-body-sm text-on-surface-variant/70 text-center mt-xs">Formato aceito: PDF</p>
+</div>
+<button class="w-full bg-primary-container text-on-primary font-label-md py-md rounded-lg hover:opacity-90 active:scale-95 transition-all flex justify-center items-center gap-sm disabled:opacity-50 disabled:cursor-not-allowed" id="uploadBtn" type="submit">
+<span>Enviar edital</span>
+<span class="hidden material-symbols-outlined animate-spin" data-icon="progress_activity" id="uploadSpinner">progress_activity</span>
+</button>
+</form>
+<div aria-live="polite" class="hidden text-body-sm font-medium p-sm rounded border" id="uploadFeedback" role="status"></div>
+</section>
+<!-- Status Card -->
+<section class="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl shadow-sm flex flex-col gap-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="query_stats">query_stats</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Status do Sistema</h2>
+</div>
+<div class="space-y-sm">
+<div class="flex justify-between items-center py-xs border-b border-outline-variant">
+<span class="text-on-surface-variant text-body-md">Trechos Carregados:</span>
+<span class="font-mono-md text-mono-md text-primary" id="statusChunks">-</span>
+</div>
+<div class="flex justify-between items-center py-xs border-b border-outline-variant">
+<span class="text-on-surface-variant text-body-md">Vetores no Índice:</span>
+<span class="font-mono-md text-mono-md text-primary" id="statusVectors">-</span>
+</div>
+<div class="flex justify-between items-center py-xs border-b border-outline-variant" title="">
+<span class="text-on-surface-variant text-body-md">Documentos:</span>
+<span class="font-mono-md text-mono-md text-primary" id="statusDocs">-</span>
+</div>
+<div class="flex justify-between items-center py-xs border-b border-outline-variant">
+<span class="text-on-surface-variant text-body-md">Modelo de Embeddings:</span>
+<span class="font-mono-md text-mono-md text-primary text-right break-all ml-sm" id="statusModel">-</span>
+</div>
+<div class="flex justify-between items-center py-xs border-b border-outline-variant">
+<span class="text-on-surface-variant text-body-md">Modelo de busca:</span>
+<span aria-live="polite" class="font-label-md text-label-md px-sm py-xs bg-surface-container-high text-on-surface-variant rounded-full" id="statusEmbeddingState">Aguardando</span>
+</div>
+<div class="flex justify-between items-center py-xs">
+<span class="text-on-surface-variant text-body-md">Status do Índice:</span>
+<span class="font-label-md text-label-md px-sm py-xs bg-error-container text-on-error-container rounded-full" id="statusIndex">Não carregado</span>
+</div>
+</div>
+<button class="mt-md flex items-center justify-center gap-xs text-primary font-label-md hover:underline active:scale-95 transition-transform" id="refreshStatus">
+<span class="material-symbols-outlined text-[18px]" data-icon="refresh">refresh</span>
+                    Atualizar Status
+                </button>
+</section>
+<!-- Field Extraction Card -->
+<section class="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl shadow-sm flex flex-col gap-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="fact_check">fact_check</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Campos-alvo</h2>
+</div>
+<label class="text-body-sm text-on-surface-variant" for="documentSelect">Edital ativo</label>
+<select class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg p-sm text-body-sm" id="documentSelect">
+<option value="">Selecione um documento indexado</option>
+</select>
+<button class="w-full bg-primary-container text-on-primary font-label-md py-md rounded-lg hover:opacity-90 active:scale-95 transition-all flex justify-center items-center gap-sm disabled:opacity-50 disabled:cursor-not-allowed" disabled="" id="extractFieldsBtn" type="button">
+<span>Extrair campos principais</span>
+<span class="hidden material-symbols-outlined animate-spin" data-icon="progress_activity" id="extractSpinner">progress_activity</span>
+</button>
+<div aria-live="polite" class="hidden text-body-sm text-on-surface-variant flex items-center gap-xs" id="extractStatusMessage" role="status">
+<span class="material-symbols-outlined animate-spin text-[16px]" data-icon="progress_activity">progress_activity</span>
+<span id="extractStatusText"></span>
+</div>
+<div aria-live="polite" class="hidden text-body-sm font-medium p-sm rounded border" id="extractFeedback" role="status"></div>
+<div class="space-y-sm" id="extractedFieldsPanel">
+<p class="text-body-sm text-on-surface-variant/70">Envie um edital e clique em "Extrair campos principais" para ver os resultados aqui.</p>
+</div>
+</section>
+</aside>
+<!-- Right Column: Chat Section -->
+<article class="md:col-span-8 flex flex-col h-[calc(100vh-12rem)] bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm">
+<!-- Chat Header -->
+<div class="p-md border-b border-outline-variant flex justify-between items-center">
+<h3 class="font-headline-sm text-headline-sm text-primary flex items-center gap-sm">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+                    Interface de Consulta
+                </h3>
+<span class="text-body-sm text-on-surface-variant">Análise assistida por IA</span>
+</div>
+<!-- Results Area -->
+<div aria-live="polite" class="flex-grow overflow-y-auto p-lg space-y-lg bg-surface-bright/50" id="resultsArea">
+<div class="flex flex-col items-center justify-center h-full text-center space-y-md opacity-40">
+<span class="material-symbols-outlined text-6xl" data-icon="summarize">summarize</span>
+<p class="text-body-lg">Faça o upload de um edital e realize perguntas específicas para obter respostas com evidências.</p>
+</div>
+</div>
+<!-- Suggestions -->
+<div class="p-md border-t border-outline-variant">
+<div class="flex flex-wrap gap-sm">
+<button class="suggestion-chip px-md py-sm bg-surface-container-high text-on-surface-variant text-body-sm rounded-full hover:bg-primary-container hover:text-on-primary transition-all active:scale-95" type="button">Objeto da licitação?</button>
+<button class="suggestion-chip px-md py-sm bg-surface-container-high text-on-surface-variant text-body-sm rounded-full hover:bg-primary-container hover:text-on-primary transition-all active:scale-95" type="button">Valor estimado?</button>
+<button class="suggestion-chip px-md py-sm bg-surface-container-high text-on-surface-variant text-body-sm rounded-full hover:bg-primary-container hover:text-on-primary transition-all active:scale-95" type="button">Modalidade?</button>
+<button class="suggestion-chip px-md py-sm bg-surface-container-high text-on-surface-variant text-body-sm rounded-full hover:bg-primary-container hover:text-on-primary transition-all active:scale-95" type="button">Prazo de entrega?</button>
+<button class="suggestion-chip px-md py-sm bg-surface-container-high text-on-surface-variant text-body-sm rounded-full hover:bg-primary-container hover:text-on-primary transition-all active:scale-95" type="button">Requisitos de habilitação?</button>
+<button class="suggestion-chip px-md py-sm bg-surface-container-high text-on-surface-variant text-body-sm rounded-full hover:bg-primary-container hover:text-on-primary transition-all active:scale-95" type="button">Liste até 5 pontos de atenção do edital</button>
+</div>
+</div>
+<!-- Query Input -->
+<div class="p-lg bg-surface-container-low rounded-b-xl border-t border-outline-variant">
+<div aria-live="polite" class="hidden text-body-sm text-on-surface-variant flex items-center gap-xs mb-sm" id="queryStatusMessage" role="status">
+<span class="material-symbols-outlined animate-spin text-[16px]" data-icon="progress_activity">progress_activity</span>
+<span id="queryStatusText"></span>
+</div>
+<form class="flex gap-md items-end" id="queryForm">
+<div class="flex-grow relative">
+<label class="sr-only" for="queryInput">Pergunta sobre o edital ativo</label>
+<textarea class="w-full bg-surface-container-lowest border border-outline-variant rounded-xl p-md pr-12 focus:ring-2 focus:ring-primary focus:border-primary transition-all resize-none text-body-md" id="queryInput" placeholder="Pergunte qualquer detalhe sobre o edital..." required="" rows="1"></textarea>
+<div class="absolute right-md bottom-1/2 translate-y-1/2 text-outline">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</div>
+</div>
+<button class="bg-primary-container text-on-primary h-12 px-xl rounded-xl font-label-md hover:opacity-90 active:scale-95 transition-all flex items-center gap-sm disabled:opacity-50 disabled:cursor-not-allowed" disabled="" id="queryBtn" type="submit">
+<span>Perguntar</span>
+<span class="hidden material-symbols-outlined animate-spin text-[18px]" data-icon="sync" id="querySpinner">sync</span>
+</button>
+</form>
+</div>
+</article>
+</main>
+<!-- Footer -->
+<footer class="bg-surface dark:bg-primary border-t border-outline-variant dark:border-on-primary-container flex justify-between items-center w-full px-lg py-sm h-12 mt-auto">
+<p class="font-body-sm text-body-sm text-secondary dark:text-on-primary-container">Projeto acadêmico - Análise de Editais com RAG e LLM</p>
+<div class="flex gap-md">
+<a class="text-on-surface-variant dark:text-on-primary-container hover:text-primary dark:hover:text-on-primary transition-colors font-body-sm text-body-sm" href="#">Termos</a>
+<a class="text-on-surface-variant dark:text-on-primary-container hover:text-primary dark:hover:text-on-primary transition-colors font-body-sm text-body-sm" href="#">Documentação</a>
+</div>
+</footer>
+<script>
+        // DOM Elements
+        const pdfInput = document.getElementById('pdfFile');
+        const fileNameDisplay = document.getElementById('fileNameDisplay');
+        const uploadForm = document.getElementById('uploadForm');
+        const uploadBtn = document.getElementById('uploadBtn');
+        const uploadSpinner = document.getElementById('uploadSpinner');
+        const uploadFeedback = document.getElementById('uploadFeedback');
+        const resultsArea = document.getElementById('resultsArea');
+        const queryForm = document.getElementById('queryForm');
+        const queryInput = document.getElementById('queryInput');
+        const queryBtn = document.getElementById('queryBtn');
+        const querySpinner = document.getElementById('querySpinner');
+        const queryStatusMessage = document.getElementById('queryStatusMessage');
+        const queryStatusText = document.getElementById('queryStatusText');
+        const statusChunks = document.getElementById('statusChunks');
+        const statusVectors = document.getElementById('statusVectors');
+        const statusDocs = document.getElementById('statusDocs');
+        const statusModel = document.getElementById('statusModel');
+        const statusEmbeddingState = document.getElementById('statusEmbeddingState');
+        const statusIndex = document.getElementById('statusIndex');
+        const refreshStatusBtn = document.getElementById('refreshStatus');
+        const suggestionChips = document.querySelectorAll('.suggestion-chip');
+        const extractFieldsBtn = document.getElementById('extractFieldsBtn');
+        const extractSpinner = document.getElementById('extractSpinner');
+        const extractFeedback = document.getElementById('extractFeedback');
+        const extractedFieldsPanel = document.getElementById('extractedFieldsPanel');
+        const extractStatusMessage = document.getElementById('extractStatusMessage');
+        const extractStatusText = document.getElementById('extractStatusText');
+        const documentSelect = document.getElementById('documentSelect');
+        let embeddingModelStatus = 'not_started';
+        let embeddingStatusTimer = null;
+        let uploadInFlight = false;
+        let queryInFlight = false;
+        let extractionInFlight = false;
+
+        const FIELD_LABELS = {
+            objeto: 'Objeto',
+            modalidade: 'Modalidade',
+            valor_estimado: 'Valor estimado',
+            prazo_entrega_proposta: 'Prazo da proposta',
+            orgao_responsavel: 'Órgão responsável',
+            uf: 'UF',
+            criterio_julgamento: 'Critério de julgamento',
+            prazo_execucao: 'Prazo de execução',
+            requisitos_habilitacao: 'Requisitos de habilitação',
+        };
+
+        // Initial Status Fetch
+        window.addEventListener('load', () => fetchStatus());
+        refreshStatusBtn.addEventListener('click', () => fetchStatus());
+
+        async function fetchStatus(preferredDocumentId = null) {
+            try {
+                const response = await fetch('/status');
+                if (!response.ok) throw new Error('Falha ao consultar status');
+                const data = await response.json();
+
+                const chunks = Number(data.chunks || 0);
+                const vectors = Number(data.vetores_no_indice || 0);
+                const hasIndex = Boolean(data.index_existe);
+                const docs = Array.isArray(data.documentos) ? data.documentos : [];
+
+                statusChunks.textContent = chunks;
+                statusVectors.textContent = vectors;
+                const indexedDocs = docs.filter(doc => doc.status === 'indexed');
+                statusDocs.textContent = String(indexedDocs.length);
+                statusDocs.title = indexedDocs.map(doc => doc.filename).join(', ');
+                const selectedBefore = preferredDocumentId || documentSelect.value;
+                documentSelect.innerHTML = '<option value="">Selecione um documento indexado</option>';
+                indexedDocs.forEach(doc => {
+                    const option = document.createElement('option');
+                    option.value = doc.document_id;
+                    option.textContent = doc.filename;
+                    documentSelect.appendChild(option);
+                });
+                if (indexedDocs.some(doc => doc.document_id === selectedBefore)) {
+                    documentSelect.value = selectedBefore;
+                } else if (indexedDocs.length === 1) {
+                    documentSelect.value = indexedDocs[0].document_id;
+                }
+                statusModel.textContent = data.modelo_embedding || '-';
+                embeddingModelStatus = data.embedding_model_status || 'not_started';
+                renderEmbeddingModelStatus(data);
+                updateDocumentSelectionState();
+                if (embeddingStatusTimer) clearTimeout(embeddingStatusTimer);
+                if (embeddingModelStatus === 'loading') {
+                    embeddingStatusTimer = setTimeout(() => fetchStatus(documentSelect.value || null), 2000);
+                }
+
+                if (hasIndex && chunks > 0 && vectors > 0 && data.storage_consistent) {
+                    statusIndex.textContent = 'Carregado';
+                    statusIndex.className = 'font-label-md text-label-md px-sm py-xs bg-emerald-100 text-emerald-800 rounded-full';
+                } else if (hasIndex && !data.storage_consistent) {
+                    statusIndex.textContent = 'Reindexação necessária';
+                    statusIndex.className = 'font-label-md text-label-md px-sm py-xs bg-amber-100 text-amber-800 rounded-full';
+                } else if (hasIndex) {
+                    statusIndex.textContent = 'Sem edital';
+                    statusIndex.className = 'font-label-md text-label-md px-sm py-xs bg-amber-100 text-amber-800 rounded-full';
+                } else {
+                    statusIndex.textContent = 'Não carregado';
+                    statusIndex.className = 'font-label-md text-label-md px-sm py-xs bg-error-container text-on-error-container rounded-full';
+                }
+                return data;
+            } catch (err) {
+                console.error('Status fetch failed', err);
+                statusIndex.textContent = 'Indisponível';
+                statusIndex.className = 'font-label-md text-label-md px-sm py-xs bg-error-container text-on-error-container rounded-full';
+                embeddingModelStatus = 'error';
+                renderEmbeddingModelStatus({embedding_model_status: 'error'});
+                updateDocumentSelectionState();
+                return null;
+            }
+        }
+
+        function renderEmbeddingModelStatus(data) {
+            const state = data.embedding_model_status || 'not_started';
+            if (state === 'ready') {
+                const duration = data.embedding_model_load_ms != null ? ` (${formatDuration(data.embedding_model_load_ms)})` : '';
+                statusEmbeddingState.textContent = `Pronto${duration}`;
+                statusEmbeddingState.className = 'font-label-md text-label-md px-sm py-xs bg-emerald-100 text-emerald-800 rounded-full';
+            } else if (state === 'loading') {
+                statusEmbeddingState.textContent = 'Preparando...';
+                statusEmbeddingState.className = 'font-label-md text-label-md px-sm py-xs bg-amber-100 text-amber-800 rounded-full';
+            } else if (state === 'error') {
+                statusEmbeddingState.textContent = 'Indisponível';
+                statusEmbeddingState.className = 'font-label-md text-label-md px-sm py-xs bg-error-container text-on-error-container rounded-full';
+            } else {
+                statusEmbeddingState.textContent = 'Aguardando';
+                statusEmbeddingState.className = 'font-label-md text-label-md px-sm py-xs bg-surface-container-high text-on-surface-variant rounded-full';
+            }
+        }
+
+        function updateDocumentSelectionState() {
+            const hasDocument = Boolean(documentSelect.value);
+            const modelReady = embeddingModelStatus === 'ready';
+            const operationBusy = uploadInFlight || queryInFlight || extractionInFlight;
+            uploadBtn.disabled = operationBusy;
+            pdfInput.disabled = operationBusy;
+            documentSelect.disabled = operationBusy;
+            refreshStatusBtn.disabled = operationBusy;
+            queryInput.disabled = operationBusy;
+            queryBtn.disabled = !hasDocument || !modelReady || operationBusy;
+            extractFieldsBtn.disabled = !hasDocument || !modelReady || operationBusy;
+            suggestionChips.forEach(chip => {
+                chip.disabled = !hasDocument || !modelReady || operationBusy;
+                chip.classList.toggle('opacity-50', !hasDocument || !modelReady || operationBusy);
+                chip.classList.toggle('cursor-not-allowed', !hasDocument || !modelReady || operationBusy);
+            });
+        }
+
+        function clearDocumentOutputs() {
+            resultsArea.innerHTML = '';
+            const empty = document.createElement('div');
+            empty.className = 'flex flex-col items-center justify-center h-full text-center space-y-md opacity-40';
+            const icon = document.createElement('span');
+            icon.className = 'material-symbols-outlined text-6xl';
+            icon.dataset.icon = 'summarize';
+            icon.textContent = 'summarize';
+            const text = document.createElement('p');
+            text.className = 'text-body-lg';
+            text.textContent = 'Faça uma pergunta específica sobre o edital ativo.';
+            empty.append(icon, text);
+            resultsArea.appendChild(empty);
+
+            extractedFieldsPanel.innerHTML = '';
+            const fieldsEmpty = document.createElement('p');
+            fieldsEmpty.className = 'text-body-sm text-on-surface-variant/70';
+            fieldsEmpty.textContent = 'Clique em "Extrair campos principais" para analisar o edital ativo.';
+            extractedFieldsPanel.appendChild(fieldsEmpty);
+            extractFeedback.classList.add('hidden');
+            queryStatusMessage.classList.add('hidden');
+        }
+
+        function requireActiveDocument() {
+            if (!documentSelect.value) {
+                queryStatusText.textContent = 'Selecione ou envie um edital antes de perguntar.';
+                queryStatusMessage.classList.remove('hidden');
+                documentSelect.focus();
+                updateDocumentSelectionState();
+                return false;
+            }
+            if (embeddingModelStatus === 'loading' || embeddingModelStatus === 'not_started') {
+                queryStatusText.textContent = 'Preparando modelo de busca. Aguarde até o estado ficar pronto.';
+                queryStatusMessage.classList.remove('hidden');
+                updateDocumentSelectionState();
+                return false;
+            }
+            if (embeddingModelStatus !== 'ready') {
+                queryStatusText.textContent = 'Modelo de busca indisponível. Reinicie ou prepare o cache local.';
+                queryStatusMessage.classList.remove('hidden');
+                updateDocumentSelectionState();
+                return false;
+            }
+            return true;
+        }
+
+        documentSelect.addEventListener('change', () => {
+            clearDocumentOutputs();
+            updateDocumentSelectionState();
+            if (documentSelect.value) {
+                queryStatusMessage.classList.add('hidden');
+            }
+        });
+
+        // Upload Logic
+        pdfInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                fileNameDisplay.textContent = file.name;
+                fileNameDisplay.classList.add('text-primary', 'font-semibold');
+            } else {
+                fileNameDisplay.textContent = 'Arraste seu PDF aqui ou clique para selecionar';
+                fileNameDisplay.classList.remove('text-primary', 'font-semibold');
+            }
+        });
+
+        uploadForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const file = pdfInput.files[0];
+            if (!file) return;
+
+            uploadInFlight = true;
+            updateDocumentSelectionState();
+            uploadSpinner.classList.remove('hidden');
+            uploadFeedback.classList.add('hidden');
+
+            const formData = new FormData();
+            formData.append('file', file);
+
+            try {
+                const response = await fetch('/upload_pdf', {
+                    method: 'POST',
+                    body: formData
+                });
+                const data = await response.json().catch(() => ({}));
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'Erro ao carregar o edital.');
+                }
+
+                const chunksAdded = data.chunks_added !== undefined ? ` (${data.chunks_added} trechos adicionados)` : '';
+                uploadFeedback.textContent = (data.message || 'Edital carregado com sucesso!') + chunksAdded;
+                uploadFeedback.className = data.status === 'pending_index'
+                    ? 'text-body-sm font-medium p-sm rounded border border-amber-200 bg-amber-50 text-amber-800 block'
+                    : 'text-body-sm font-medium p-sm rounded border border-emerald-200 bg-emerald-50 text-emerald-800 block';
+                clearDocumentOutputs();
+                await fetchStatus(data.document_id);
+            } catch (err) {
+                uploadFeedback.textContent = err.message || 'Erro ao carregar o edital. Tente novamente.';
+                uploadFeedback.className = 'text-body-sm font-medium p-sm rounded border border-red-200 bg-red-50 text-red-800 block';
+            } finally {
+                uploadInFlight = false;
+                updateDocumentSelectionState();
+                uploadSpinner.classList.add('hidden');
+            }
+        });
+
+        // Query Logic
+        queryForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if (!requireActiveDocument()) return;
+            const query = queryInput.value.trim();
+            if (!query) return;
+
+            submitQuery(query);
+        });
+
+        suggestionChips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                if (!requireActiveDocument()) return;
+                const text = chip.textContent;
+                queryInput.value = text;
+                submitQuery(text);
+            });
+        });
+
+        function formatDuration(ms) {
+            const value = Number(ms);
+            if (!Number.isFinite(value)) return '-';
+            if (value < 1000) return `${Math.round(value)} ms`;
+            return `${(value / 1000).toFixed(1).replace('.', ',')} s`;
+        }
+
+        async function submitQuery(queryText) {
+            if (!requireActiveDocument()) return;
+            if (resultsArea.querySelector('.text-center')) {
+                resultsArea.innerHTML = '';
+            }
+
+            appendUserMessage(queryText);
+
+            queryInFlight = true;
+            updateDocumentSelectionState();
+            querySpinner.classList.remove('hidden');
+            queryInput.value = '';
+
+            queryStatusText.textContent = 'Consultando trechos do edital ativo e gerando resposta...';
+            queryStatusMessage.classList.remove('hidden');
+            const slowQueryTimeout = setTimeout(() => {
+                queryStatusText.textContent = 'A consulta ainda está em andamento; o plano gratuito pode exigir uma espera entre chamadas.';
+            }, 10000);
+
+            try {
+                const response = await fetch('/query', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({query: queryText, document_id: documentSelect.value || null})
+                });
+                const data = await response.json().catch(() => ({}));
+
+                if (!response.ok) {
+                    const requestError = new Error(data.error || 'Erro ao processar a consulta.');
+                    requestError.code = data.code;
+                    requestError.requestId = data.request_id;
+                    throw requestError;
+                }
+
+                appendAgentMessage(data);
+            } catch (err) {
+                appendSystemError(
+                    err.message || 'Desculpe, ocorreu um erro ao processar sua consulta.',
+                    err.code,
+                    err.requestId,
+                );
+            } finally {
+                clearTimeout(slowQueryTimeout);
+                queryStatusMessage.classList.add('hidden');
+                queryInFlight = false;
+                updateDocumentSelectionState();
+                querySpinner.classList.add('hidden');
+                resultsArea.scrollTop = resultsArea.scrollHeight;
+            }
+        }
+
+        function appendUserMessage(text) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = 'p-lg rounded-xl max-w-[85%] ml-auto bg-primary-container text-on-primary';
+
+            const wrapper = document.createElement('div');
+            wrapper.className = 'flex flex-col gap-xs';
+
+            const label = document.createElement('span');
+            label.className = 'text-xs uppercase opacity-60 font-bold';
+            label.textContent = 'Pergunta';
+            wrapper.appendChild(label);
+
+            const paragraph = document.createElement('p');
+            paragraph.className = 'whitespace-pre-wrap';
+            paragraph.textContent = text;
+            wrapper.appendChild(paragraph);
+
+            msgDiv.appendChild(wrapper);
+            resultsArea.appendChild(msgDiv);
+            resultsArea.scrollTop = resultsArea.scrollHeight;
+        }
+
+        function appendSystemError(message, code = null, requestId = null) {
+            const card = document.createElement('div');
+            card.className = 'p-lg rounded-xl max-w-[95%] border border-red-200 bg-red-50 text-red-900';
+
+            const label = document.createElement('div');
+            label.className = 'text-xs uppercase font-bold mb-xs';
+            label.textContent = 'Erro do sistema';
+            card.appendChild(label);
+
+            const text = document.createElement('p');
+            text.className = 'text-body-md';
+            text.textContent = message;
+            card.appendChild(text);
+
+            if (code || requestId) {
+                const reference = document.createElement('div');
+                reference.className = 'text-xs mt-sm opacity-70';
+                reference.textContent = [code, requestId ? `referência ${requestId}` : null]
+                    .filter(Boolean)
+                    .join(' · ');
+                card.appendChild(reference);
+            }
+
+            resultsArea.appendChild(card);
+            resultsArea.scrollTop = resultsArea.scrollHeight;
+        }
+
+        // Linhas de cabeçalho de seção (Resposta/Resumo/Pontos de atenção/Evidências)
+        const SECTION_HEADING_PATTERN = /^\s*(resposta|resumo|pontos de aten[cç][aã]o|evid[eê]ncias)\s*:\s*$/i;
+        // Linhas de evidência avulsa: "- Documento: ... | Página(s): ... | Trecho: ..."
+        const EVIDENCE_BULLET_PATTERN = /^\s*-?\s*documento\s*:/i;
+        // Sub-campos de um ponto de atenção (Título/Impacto/Evidência)
+        const POINT_FIELD_PATTERN = /^(t[ií]tulo|impacto|evid[eê]ncia)\s*:/i;
+
+        function renderAgentResponseText(text, wrapper) {
+            const lines = String(text).split('\n');
+            let buffer = [];
+
+            function flushParagraph() {
+                const content = buffer.join('\n').trim();
+                buffer = [];
+                if (!content) return;
+                const p = document.createElement('p');
+                p.className = 'whitespace-pre-wrap text-body-md leading-relaxed';
+                p.textContent = content;
+                wrapper.appendChild(p);
+            }
+
+            lines.forEach((rawLine) => {
+                const trimmed = rawLine.trim();
+
+                if (!trimmed) {
+                    buffer.push('');
+                    return;
+                }
+
+                if (SECTION_HEADING_PATTERN.test(trimmed)) {
+                    flushParagraph();
+                    const heading = document.createElement('div');
+                    heading.className = 'text-label-md font-semibold text-primary uppercase tracking-wide mt-md';
+                    heading.textContent = trimmed.replace(/:\s*$/, '');
+                    wrapper.appendChild(heading);
+                    return;
+                }
+
+                if (EVIDENCE_BULLET_PATTERN.test(trimmed)) {
+                    flushParagraph();
+                    const evidence = document.createElement('div');
+                    evidence.className = 'evidence-tag text-body-sm';
+                    evidence.textContent = trimmed.replace(/^-\s*/, '');
+                    wrapper.appendChild(evidence);
+                    return;
+                }
+
+                // Item numerado (ex.: "1. Título: ...") — separa o número do restante da linha
+                const listMatch = trimmed.match(/^(\d+)\.\s*(.*)$/);
+                const lineBody = listMatch ? listMatch[2] : trimmed;
+                const listNumber = listMatch ? listMatch[1] : null;
+
+                const fieldMatch = lineBody.match(POINT_FIELD_PATTERN);
+                if (fieldMatch) {
+                    flushParagraph();
+                    const fieldDiv = document.createElement('div');
+                    fieldDiv.className = listNumber ? 'text-body-sm mt-sm' : 'text-body-sm pl-md';
+
+                    if (listNumber) {
+                        const num = document.createElement('span');
+                        num.className = 'font-semibold text-primary';
+                        num.textContent = `${listNumber}. `;
+                        fieldDiv.appendChild(num);
+                    }
+
+                    const strong = document.createElement('span');
+                    strong.className = 'font-semibold text-on-surface';
+                    strong.textContent = fieldMatch[0];
+                    fieldDiv.appendChild(strong);
+                    fieldDiv.appendChild(document.createTextNode(lineBody.slice(fieldMatch[0].length)));
+                    wrapper.appendChild(fieldDiv);
+                    return;
+                }
+
+                buffer.push(rawLine);
+            });
+
+            flushParagraph();
+        }
+
+        function buildSourceCard(source) {
+            const pages = source.page_start === source.page_end
+                ? `${source.page_start}`
+                : `${source.page_start}-${source.page_end}`;
+
+            const card = document.createElement('div');
+            card.className = 'evidence-tag text-body-sm';
+            card.dataset.documentId = String(source.document_id || '');
+            card.dataset.chunkId = String(source.chunk_id || '');
+
+            const meta = document.createElement('div');
+            meta.className = 'font-semibold text-on-surface not-italic';
+            const sourcePart = source.document_part ? ` · ${source.document_part}` : '';
+            meta.textContent = `${source.filename} · Página(s) ${pages}${sourcePart}`;
+            card.appendChild(meta);
+
+            const snippetText = String(source.text || '');
+            const snippet = document.createElement('div');
+            snippet.textContent = snippetText.slice(0, 280) + (snippetText.length > 280 ? '…' : '');
+            card.appendChild(snippet);
+
+            return card;
+        }
+
+        function claimLabel(item, kind) {
+            const labels = {
+                procedimento: 'Procedimento',
+                forma_contratacao: 'Forma de contratação',
+                juridica: 'Habilitação jurídica',
+                fiscal_trabalhista: 'Regularidade fiscal e trabalhista',
+                economica: 'Qualificação econômico-financeira',
+                tecnico_operacional: 'Qualificação técnico-operacional',
+                tecnico_profissional: 'Qualificação técnico-profissional',
+                declaracoes: 'Declarações e documentos complementares',
+                prazo_entrega: 'Prazo de entrega',
+                prazo_entrega_proposta: 'Prazo de entrega da proposta',
+                prazo_execucao: 'Prazo de execução',
+                prazo_atendimento: 'Prazo de atendimento',
+                prazo_conclusao: 'Prazo de conclusão',
+                prazo_recebimento_definitivo: 'Recebimento definitivo',
+                prazo_vigencia: 'Prazo de vigência',
+                prazo_diagnostico: 'Prazo após diagnóstico',
+                prazo_contextual: 'Prazo contextual',
+            };
+            if (kind === 'attention') return item.title || 'Ponto de atenção';
+            if (kind === 'claim') return labels[item.label] || item.label || 'Afirmação validada';
+            if (kind === 'simple') return 'Resposta validada';
+            return labels[item.category || item.deadline_type] || item.summary || 'Evidência';
+        }
+
+        function buildValidatedEvidenceCard(item, kind) {
+            const card = document.createElement('div');
+            card.className = 'evidence-tag text-body-sm';
+
+            const title = document.createElement('div');
+            title.className = 'font-semibold text-on-surface not-italic';
+            title.textContent = claimLabel(item, kind);
+            card.appendChild(title);
+
+            const evidence = item.evidence || {};
+            const metadata = document.createElement('div');
+            metadata.className = 'text-xs text-on-surface-variant not-italic';
+            const chunkId = String(item.source_chunk_id || evidence.chunk_id || '');
+            const compactChunk = chunkId.length > 16 ? `${chunkId.slice(0, 16)}…` : chunkId;
+            const origin = item.document_part || 'parte não identificada';
+            metadata.textContent = [
+                evidence.filename,
+                item.pages || evidence.pages ? `p. ${item.pages || evidence.pages}` : null,
+                origin,
+                compactChunk ? `chunk ${compactChunk}` : null,
+            ].filter(Boolean).join(' · ');
+            if (chunkId) metadata.title = `chunk ${chunkId}`;
+            card.appendChild(metadata);
+
+            const literal = document.createElement('div');
+            literal.textContent = item.evidence_text || evidence.text || '';
+            card.appendChild(literal);
+            return card;
+        }
+
+        function appendAgentMessage(data) {
+            const text = data.response || 'Informação não encontrada nos trechos disponíveis.';
+            const sources = Array.isArray(data.sources) ? data.sources : [];
+            const validatedClaims = [
+                ...(data.evidence && data.evidence_text
+                    ? [{
+                        item: {
+                            evidence: data.evidence,
+                            evidence_text: data.evidence_text,
+                            source_chunk_id: Array.isArray(data.source_chunk_ids)
+                                ? data.source_chunk_ids[0]
+                                : data.evidence.chunk_id,
+                            document_part: sources.find(
+                                source => source.chunk_id === data.evidence.chunk_id
+                            )?.document_part,
+                        },
+                        kind: 'simple',
+                    }]
+                    : []),
+                ...(Array.isArray(data.deadline_items)
+                    ? data.deadline_items.map(item => ({item, kind: 'deadline'}))
+                    : []),
+                ...(Array.isArray(data.habilitation_items)
+                    ? data.habilitation_items.map(item => ({item, kind: 'habilitation'}))
+                    : []),
+                ...(Array.isArray(data.attention_points)
+                    ? data.attention_points.map(item => ({item, kind: 'attention'}))
+                    : []),
+                ...(Array.isArray(data.claims)
+                    ? data.claims.map(item => ({item, kind: 'claim'}))
+                    : []),
+            ].filter(entry => entry.item && entry.item.evidence_text);
+            const metrics = data.metrics;
+
+            const msgDiv = document.createElement('div');
+            msgDiv.className = 'p-lg rounded-xl max-w-[95%] bg-surface-container-high border border-outline-variant text-on-surface';
+            msgDiv.dataset.documentId = String(data.document_id || '');
+            msgDiv.dataset.status = String(data.status || '');
+
+            const wrapper = document.createElement('div');
+            wrapper.className = 'flex flex-col gap-xs';
+
+            const label = document.createElement('span');
+            label.className = 'text-xs uppercase text-primary font-bold';
+            label.textContent = 'Resposta do Agente';
+            wrapper.appendChild(label);
+
+            renderAgentResponseText(text, wrapper);
+
+            if (validatedClaims.length) {
+                const evidenceTitle = document.createElement('div');
+                evidenceTitle.className = 'text-xs uppercase text-primary font-bold mt-sm';
+                evidenceTitle.textContent = `Evidências validadas (${validatedClaims.length})`;
+                wrapper.appendChild(evidenceTitle);
+                validatedClaims.forEach(({item, kind}) => {
+                    wrapper.appendChild(buildValidatedEvidenceCard(item, kind));
+                });
+            }
+
+            if (sources.length) {
+                const visibleCount = Math.min(2, sources.length);
+                const sourcesTitle = document.createElement('div');
+                sourcesTitle.className = 'text-xs uppercase text-primary font-bold mt-sm';
+                sourcesTitle.textContent = `Fontes recuperadas (${sources.length})`;
+                wrapper.appendChild(sourcesTitle);
+
+                sources.slice(0, visibleCount).forEach((s) => {
+                    wrapper.appendChild(buildSourceCard(s));
+                });
+
+                if (sources.length > visibleCount) {
+                    const details = document.createElement('details');
+                    details.className = 'mt-xs';
+
+                    const summary = document.createElement('summary');
+                    summary.className = 'text-body-sm text-primary cursor-pointer hover:underline';
+                    summary.textContent = `Ver mais ${sources.length - visibleCount} fonte(s)`;
+                    details.appendChild(summary);
+
+                    sources.slice(visibleCount).forEach((s) => {
+                        details.appendChild(buildSourceCard(s));
+                    });
+
+                    wrapper.appendChild(details);
+                }
+            }
+
+            if (metrics) {
+                const metricsDiv = document.createElement('div');
+                metricsDiv.className = 'text-body-sm text-on-surface-variant/70 mt-sm font-mono-md';
+                const timingParts = [];
+                if (metrics.embedding_ms != null) {
+                    timingParts.push(`Embedding/preparação: ${formatDuration(metrics.embedding_ms)}`);
+                }
+                if (metrics.vector_search_ms != null) {
+                    timingParts.push(`Busca FAISS: ${formatDuration(metrics.vector_search_ms)}`);
+                }
+                if (metrics.reranking_ms != null) {
+                    timingParts.push(`Reranking local: ${formatDuration(metrics.reranking_ms)}`);
+                }
+                if (metrics.section_expansion_ms != null) {
+                    timingParts.push(`Expansão de seção: ${formatDuration(metrics.section_expansion_ms)}`);
+                }
+                if (metrics.candidate_count != null) {
+                    timingParts.push(`Candidatos locais: ${metrics.candidate_count}`);
+                }
+                if (metrics.llm_calls != null) {
+                    timingParts.push(`Chamadas Groq: ${metrics.llm_calls}`);
+                }
+                const usage = data.usage || {};
+                if (usage.total_tokens != null) {
+                    timingParts.push(
+                        `Tokens: ${usage.total_tokens} (${usage.prompt_tokens || 0} entrada + ${usage.completion_tokens || 0} saída)`
+                    );
+                }
+                timingParts.push(`Recuperação total: ${formatDuration(metrics.retrieval_ms)}`);
+                if (Number(metrics.rate_limit_wait_ms) > 0) {
+                    timingParts.push(`Espera do plano gratuito: ${formatDuration(metrics.rate_limit_wait_ms)}`);
+                }
+                timingParts.push(`LLM: ${formatDuration(metrics.llm_ms)}`);
+                timingParts.push(`Total: ${formatDuration(metrics.total_ms)}`);
+                metricsDiv.textContent = timingParts.join(' · ');
+                wrapper.appendChild(metricsDiv);
+            }
+
+            msgDiv.appendChild(wrapper);
+            resultsArea.appendChild(msgDiv);
+            resultsArea.scrollTop = resultsArea.scrollHeight;
+        }
+
+        // Field Extraction Logic
+        extractFieldsBtn.addEventListener('click', async () => {
+            if (!documentSelect.value) {
+                extractFeedback.textContent = 'Selecione um edital indexado antes da extração.';
+                extractFeedback.className = 'text-body-sm font-medium p-sm rounded border border-amber-200 bg-amber-50 text-amber-800 block';
+                return;
+            }
+            extractionInFlight = true;
+            updateDocumentSelectionState();
+            extractSpinner.classList.remove('hidden');
+            extractFeedback.classList.add('hidden');
+
+            extractStatusText.textContent = 'Extraindo os campos principais do edital...';
+            extractStatusMessage.classList.remove('hidden');
+            const slowExtractTimeout = setTimeout(() => {
+                extractStatusText.textContent = 'Ainda processando alguns campos, isso pode levar um pouco mais.';
+            }, 10000);
+
+            try {
+                const response = await fetch('/extract_fields', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({document_id: documentSelect.value})
+                });
+                const data = await response.json().catch(() => ({}));
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'Erro ao extrair campos.');
+                }
+
+                renderExtractedFields(data.fields || {});
+            } catch (err) {
+                extractFeedback.textContent = err.message || 'Erro ao extrair campos. Tente novamente.';
+                extractFeedback.className = 'text-body-sm font-medium p-sm rounded border border-red-200 bg-red-50 text-red-800 block';
+            } finally {
+                clearTimeout(slowExtractTimeout);
+                extractStatusMessage.classList.add('hidden');
+                extractionInFlight = false;
+                updateDocumentSelectionState();
+                extractSpinner.classList.add('hidden');
+            }
+        });
+
+        function renderExtractedFields(fields) {
+            extractedFieldsPanel.innerHTML = '';
+
+            Object.keys(FIELD_LABELS).forEach((key) => {
+                const field = fields[key];
+                if (!field) return;
+
+                const card = document.createElement('div');
+                card.className = 'border border-outline-variant rounded-lg p-sm space-y-xs';
+
+                const header = document.createElement('div');
+                header.className = 'flex justify-between items-center gap-xs';
+
+                const title = document.createElement('span');
+                title.className = 'text-body-md font-semibold text-on-surface';
+                title.textContent = FIELD_LABELS[key];
+                header.appendChild(title);
+
+                const badge = document.createElement('span');
+                const evidenceValid = Boolean(field.evidence && field.evidence.evidence_valid);
+                badge.className = `text-xs px-sm py-xs rounded-full font-label-md whitespace-nowrap ${evidenceValid ? 'bg-emerald-100 text-emerald-800' : 'bg-red-100 text-red-800'}`;
+                badge.textContent = evidenceValid ? 'evidência validada' : 'sem evidência válida';
+                header.appendChild(badge);
+
+                card.appendChild(header);
+
+                const value = document.createElement('p');
+                value.className = 'text-body-sm text-on-surface';
+                value.textContent = field.value || '-';
+                card.appendChild(value);
+
+                if (field.evidence && (field.evidence.text || field.evidence.filename)) {
+                    const evidence = document.createElement('div');
+                    evidence.className = 'evidence-tag text-body-sm';
+
+                    const parts = [];
+                    if (field.evidence.filename) parts.push(field.evidence.filename);
+                    if (field.evidence.pages) parts.push(`p. ${field.evidence.pages}`);
+
+                    const metaLine = document.createElement('div');
+                    metaLine.className = 'font-semibold not-italic';
+                    metaLine.textContent = parts.join(' · ');
+                    evidence.appendChild(metaLine);
+
+                    if (field.evidence.text) {
+                        const snippet = document.createElement('div');
+                        snippet.textContent = field.evidence.text;
+                        evidence.appendChild(snippet);
+                    }
+
+                    card.appendChild(evidence);
+                }
+
+                extractedFieldsPanel.appendChild(card);
+            });
+
+            if (!extractedFieldsPanel.children.length) {
+                const empty = document.createElement('p');
+                empty.className = 'text-body-sm text-on-surface-variant/70';
+                empty.textContent = 'Nenhum campo pôde ser extraído.';
+                extractedFieldsPanel.appendChild(empty);
+            }
+        }
+
+        // Auto-resize textarea
+        queryInput.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + 'px';
+            if (parseInt(this.style.height) > 200) {
+                this.style.overflowY = 'auto';
+                this.style.height = '200px';
+            } else {
+                this.style.overflowY = 'hidden';
+            }
+        });
+    </script>
+
+</body></html>

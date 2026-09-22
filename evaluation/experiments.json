@@ -1,0 +1,12 @@
+{
+  "chunk_sizes": [300, 500, 800],
+  "overlaps": [50, 80],
+  "top_ks": [3, 5],
+  "selection_priority": [
+    "answer_correctness_desc",
+    "faithfulness_desc",
+    "hallucination_rate_asc",
+    "estimated_cost_asc",
+    "total_ms_asc"
+  ]
+}

@@ -1,0 +1,180 @@
+{
+  "generated_at": "2026-07-22T23:04:10.805432+00:00",
+  "rows": 27,
+  "summary": [
+    {
+      "approach": "llm_no_retrieval",
+      "config_id": "baseline_llm",
+      "samples": 9,
+      "faithfulness": {
+        "count": 1,
+        "mean": 1.0,
+        "median": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "stddev": 0.0
+      },
+      "answer_correctness": {
+        "count": 1,
+        "mean": 1.0,
+        "median": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "stddev": 0.0
+      },
+      "total_ms": {
+        "count": 9,
+        "mean": 20642.38888888889,
+        "median": 18786.2,
+        "min": 4216.2,
+        "max": 38924.4,
+        "stddev": 14230.003901103897
+      },
+      "prompt_tokens": {
+        "count": 9,
+        "mean": 290.8888888888889,
+        "median": 271.0,
+        "min": 263.0,
+        "max": 339.0,
+        "stddev": 33.69617335492907
+      },
+      "completion_tokens": {
+        "count": 9,
+        "mean": 67.66666666666667,
+        "median": 66.0,
+        "min": 49.0,
+        "max": 88.0,
+        "stddev": 15.853495934125487
+      },
+      "estimated_cost": {
+        "count": 9,
+        "mean": 8.423333333333333e-05,
+        "median": 9.015e-05,
+        "min": 7.025e-05,
+        "max": 9.23e-05,
+        "stddev": 9.926591671979975e-06
+      },
+      "answered_fields": 1,
+      "hallucinated_fields": 0,
+      "hallucination_rate": 0.0,
+      "definition": "answered fields without valid evidence or contradicting a human-validated reference / answered fields",
+      "ignored_answer_correctness": 0
+    },
+    {
+      "approach": "rag",
+      "config_id": "chunk500_overlap50_topk3",
+      "samples": 9,
+      "faithfulness": {
+        "count": 2,
+        "mean": 1.0,
+        "median": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "stddev": 0.0
+      },
+      "answer_correctness": {
+        "count": 2,
+        "mean": 0.8468791356479632,
+        "median": 0.8468791356479632,
+        "min": 0.6937582712959265,
+        "max": 1.0,
+        "stddev": 0.15312086435203676
+      },
+      "total_ms": {
+        "count": 9,
+        "mean": 24541.48888888889,
+        "median": 24188.5,
+        "min": 1051.5,
+        "max": 48384.1,
+        "stddev": 19323.976167183515
+      },
+      "prompt_tokens": {
+        "count": 9,
+        "mean": 725.2222222222222,
+        "median": 734.0,
+        "min": 698.0,
+        "max": 744.0,
+        "stddev": 19.65128086171924
+      },
+      "completion_tokens": {
+        "count": 9,
+        "mean": 84.77777777777777,
+        "median": 87.0,
+        "min": 61.0,
+        "max": 106.0,
+        "stddev": 17.924395404511806
+      },
+      "estimated_cost": {
+        "count": 9,
+        "mean": 0.00015965,
+        "median": 0.00016395,
+        "min": 0.0001471,
+        "max": 0.0001679,
+        "stddev": 9.019515877621516e-06
+      },
+      "answered_fields": 2,
+      "hallucinated_fields": 1,
+      "hallucination_rate": 0.5,
+      "definition": "answered fields without valid evidence or contradicting a human-validated reference / answered fields",
+      "ignored_answer_correctness": 0
+    },
+    {
+      "approach": "regex",
+      "config_id": "baseline_regex",
+      "samples": 9,
+      "faithfulness": {
+        "count": 3,
+        "mean": 1.0,
+        "median": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "stddev": 0.0
+      },
+      "answer_correctness": {
+        "count": 3,
+        "mean": 0.8777223561662121,
+        "median": 0.9429182850033584,
+        "min": 0.6902487834952782,
+        "max": 1.0,
+        "stddev": 0.13459652269961617
+      },
+      "total_ms": {
+        "count": 9,
+        "mean": 13.711111111111112,
+        "median": 9.5,
+        "min": 2.8,
+        "max": 44.1,
+        "stddev": 11.835769180698204
+      },
+      "prompt_tokens": {
+        "count": 9,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "stddev": 0.0
+      },
+      "completion_tokens": {
+        "count": 9,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "stddev": 0.0
+      },
+      "estimated_cost": {
+        "count": 9,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "stddev": 0.0
+      },
+      "answered_fields": 3,
+      "hallucinated_fields": 2,
+      "hallucination_rate": 0.6666666666666666,
+      "definition": "answered fields without valid evidence or contradicting a human-validated reference / answered fields",
+      "ignored_answer_correctness": 0
+    }
+  ]
+}

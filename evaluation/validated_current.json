@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "name": "validated_current",
+  "origin": "consolidated_round2_2026-08-07",
+  "golden_count": 46,
+  "consolidated_found": 105,
+  "documents": [
+    {"document": "01.Edital_credenciamento_01_2024.pdf", "found_fields": ["objeto", "modalidade", "valor_estimado", "uf", "prazo_execucao", "requisitos_habilitacao"]},
+    {"document": "02---Edital-Pregao-Eletronico.pdf", "found_fields": ["objeto", "modalidade", "valor_estimado", "prazo_entrega_proposta", "orgao_responsavel", "uf", "criterio_julgamento", "requisitos_habilitacao"]},
+    {"document": "1123420260129-Termo_1.pdf", "found_fields": ["objeto", "modalidade", "uf"]},
+    {"document": "1626Manutencaodemotoreseletricos.pdf", "found_fields": ["objeto", "modalidade", "valor_estimado", "prazo_entrega_proposta", "orgao_responsavel", "uf", "criterio_julgamento", "prazo_execucao", "requisitos_habilitacao"]},
+    {"document": "34-26+-+Orientador+Social+e+servico+tecnico+assistencial+-+PE+29-26+-+Comprasgov+__-26.pdf", "found_fields": ["objeto", "modalidade", "prazo_entrega_proposta", "orgao_responsavel", "uf", "criterio_julgamento", "requisitos_habilitacao"]},
+    {"document": "874745.pdf", "found_fields": ["orgao_responsavel", "uf", "criterio_julgamento", "requisitos_habilitacao"]},
+    {"document": "885062.pdf", "found_fields": ["objeto", "modalidade", "orgao_responsavel", "uf", "criterio_julgamento", "requisitos_habilitacao"]},
+    {"document": "documento.pdf", "found_fields": ["modalidade", "orgao_responsavel", "uf", "requisitos_habilitacao"]},
+    {"document": "Edital+102150-+149+-+2026+assinado.pdf", "found_fields": ["modalidade", "prazo_entrega_proposta", "uf", "criterio_julgamento", "requisitos_habilitacao"]},
+    {"document": "Edital+Credenciamento_OCS-PSA+01-2024.pdf", "found_fields": ["objeto", "modalidade", "orgao_responsavel", "uf", "requisitos_habilitacao"]},
+    {"document": "Edital+de+Credenciamento+n+001.2026.pdf", "found_fields": ["orgao_responsavel", "uf", "requisitos_habilitacao"]},
+    {"document": "Edital+e+anexos.pdf", "found_fields": ["objeto", "modalidade", "orgao_responsavel", "uf", "criterio_julgamento"]},
+    {"document": "Edital.pdf", "found_fields": ["objeto", "orgao_responsavel", "uf", "requisitos_habilitacao"]},
+    {"document": "edital609.pdf", "found_fields": ["objeto", "modalidade", "orgao_responsavel", "uf", "criterio_julgamento"]},
+    {"document": "edital610.pdf", "found_fields": ["objeto", "modalidade", "orgao_responsavel", "uf", "criterio_julgamento"]},
+    {"document": "EDITAL_CC006.pdf", "found_fields": ["objeto", "prazo_entrega_proposta", "uf", "criterio_julgamento", "requisitos_habilitacao"]},
+    {"document": "EDITAL_DE_CREDENCIAMENTO_004.2025_assinado.pdf", "found_fields": ["orgao_responsavel", "uf", "requisitos_habilitacao"]},
+    {"document": "PE+056-26+-+Proc.+00821-26+-+Aquisicao+equipamento+para+viaturas+-+Rep.pdf", "found_fields": ["objeto", "modalidade", "valor_estimado", "prazo_entrega_proposta", "orgao_responsavel", "uf", "criterio_julgamento", "prazo_execucao", "requisitos_habilitacao"]},
+    {"document": "PE+056-26+-+Proc.+00821-26+-+Aquisicao+equipamento+para+viaturas.pdf", "found_fields": ["objeto", "modalidade", "valor_estimado", "prazo_entrega_proposta", "orgao_responsavel", "uf", "criterio_julgamento", "prazo_execucao", "requisitos_habilitacao"]}
+  ]
+}

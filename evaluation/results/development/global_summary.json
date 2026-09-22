@@ -1,0 +1,818 @@
+{
+  "generated_at": "2026-07-22T22:57:14.265550+00:00",
+  "rows": 294,
+  "summary": [
+    {
+      "approach": "llm_no_retrieval",
+      "config_id": "baseline_llm",
+      "samples": 21,
+      "faithfulness": {
+        "count": 5,
+        "mean": 0.8,
+        "median": 1.0,
+        "min": 0.0,
+        "max": 1.0,
+        "stddev": 0.4
+      },
+      "answer_correctness": {
+        "count": 5,
+        "mean": 0.8924798281247849,
+        "median": 0.9276572304861683,
+        "min": 0.6784956205745718,
+        "max": 1.0,
+        "stddev": 0.11954976767408118
+      },
+      "total_ms": {
+        "count": 21,
+        "mean": 34821.0,
+        "median": 31113.4,
+        "min": 3304.7,
+        "max": 98468.3,
+        "stddev": 27712.310855870193
+      },
+      "prompt_tokens": {
+        "count": 21,
+        "mean": 405.04761904761904,
+        "median": 383.0,
+        "min": 308.0,
+        "max": 509.0,
+        "stddev": 67.8215278299465
+      },
+      "completion_tokens": {
+        "count": 21,
+        "mean": 62.333333333333336,
+        "median": 52.0,
+        "min": 48.0,
+        "max": 90.0,
+        "stddev": 15.232588290626975
+      },
+      "estimated_cost": {
+        "count": 21,
+        "mean": 9.815714285714285e-05,
+        "median": 9.57e-05,
+        "min": 7.74e-05,
+        "max": 0.00012865,
+        "stddev": 1.5583540505734814e-05
+      },
+      "answered_fields": 5,
+      "hallucinated_fields": 3,
+      "hallucination_rate": 0.6,
+      "definition": "answered fields without valid evidence or contradicting a human-validated reference / answered fields",
+      "ignored_answer_correctness": 0
+    },
+    {
+      "approach": "rag",
+      "config_id": "chunk300_overlap50_topk3",
+      "samples": 21,
+      "faithfulness": {
+        "count": 4,
+        "mean": 1.0,
+        "median": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "stddev": 0.0
+      },
+      "answer_correctness": {
+        "count": 4,
+        "mean": 0.8679513737415103,
+        "median": 0.8944738360273836,
+        "min": 0.6828578229112741,
+        "max": 1.0,
+        "stddev": 0.11524809741836135
+      },
+      "total_ms": {
+        "count": 21,
+        "mean": 39598.85238095238,
+        "median": 48069.0,
+        "min": 790.1,
+        "max": 53694.0,
+        "stddev": 18449.796189185785
+      },
+      "prompt_tokens": {
+        "count": 21,
+        "mean": 803.5238095238095,
+        "median": 851.0,
+        "min": 580.0,
+        "max": 886.0,
+        "stddev": 103.45627972268748
+      },
+      "completion_tokens": {
+        "count": 21,
+        "mean": 77.66666666666667,
+        "median": 57.0,
+        "min": 52.0,
+        "max": 138.0,
+        "stddev": 30.311609175259086
+      },
+      "estimated_cost": {
+        "count": 21,
+        "mean": 0.00016712857142857143,
+        "median": 0.0001661,
+        "min": 0.00011905,
+        "max": 0.0002105,
+        "stddev": 2.7777507050834918e-05
+      },
+      "answered_fields": 4,
+      "hallucinated_fields": 3,
+      "hallucination_rate": 0.75,
+      "definition": "answered fields without valid evidence or contradicting a human-validated reference / answered fields",
+      "ignored_answer_correctness": 0
+    },
+    {
+      "approach": "rag",
+      "config_id": "chunk300_overlap50_topk5",
+      "samples": 21,
+      "faithfulness": {
+        "count": 4,
+        "mean": 1.0,
+        "median": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "stddev": 0.0
+      },
+      "answer_correctness": {
+        "count": 4,
+        "mean": 0.8679513737415103,
+        "median": 0.8944738360273836,
+        "min": 0.6828578229112741,
+        "max": 1.0,
+        "stddev": 0.11524809741836135
+      },
+      "total_ms": {
+        "count": 21,
+        "mean": 45689.37619047619,
+        "median": 54969.5,
+        "min": 857.8,
+        "max": 64621.5,
+        "stddev": 21903.059776572307
+      },
+      "prompt_tokens": {
+        "count": 21,
+        "mean": 981.0952380952381,
+        "median": 1059.0,
+        "min": 658.0,
+        "max": 1118.0,
+        "stddev": 161.19314199103917
+      },
+      "completion_tokens": {
+        "count": 21,
+        "mean": 75.33333333333333,
+        "median": 59.0,
+        "min": 51.0,
+        "max": 135.0,
+        "stddev": 28.682719757694052
+      },
+      "estimated_cost": {
+        "count": 21,
+        "mean": 0.0001923642857142857,
+        "median": 0.0001899,
+        "min": 0.0001296,
+        "max": 0.0002446,
+        "stddev": 3.619110698071828e-05
+      },
+      "answered_fields": 4,
+      "hallucinated_fields": 3,
+      "hallucination_rate": 0.75,
+      "definition": "answered fields without valid evidence or contradicting a human-validated reference / answered fields",
+      "ignored_answer_correctness": 0
+    },
+    {
+      "approach": "rag",
+      "config_id": "chunk300_overlap80_topk3",
+      "samples": 21,
+      "faithfulness": {
+        "count": 4,
+        "mean": 0.75,
+        "median": 1.0,
+        "min": 0.0,
+        "max": 1.0,
+        "stddev": 0.4330127018922193
+      },
+      "answer_correctness": {
+        "count": 4,
+        "mean": 0.867625957108204,
+        "median": 0.893823002760771,
+        "min": 0.6828578229112741,
+        "max": 1.0,
+        "stddev": 0.11516454288517053
+      },
+      "total_ms": {
+        "count": 21,
+        "mean": 41228.538095238095,
+        "median": 47766.8,
+        "min": 970.6,
+        "max": 55887.3,
+        "stddev": 18712.75701072288
+      },
+      "prompt_tokens": {
+        "count": 21,
+        "mean": 846.2857142857143,
+        "median": 871.0,
+        "min": 582.0,
+        "max": 943.0,
+        "stddev": 114.06102913505094
+      },
+      "completion_tokens": {
+        "count": 21,
+        "mean": 79.38095238095238,
+        "median": 60.0,
+        "min": 50.0,
+        "max": 154.0,
+        "stddev": 35.39501739278889
+      },
+      "estimated_cost": {
+        "count": 21,
+        "mean": 0.00017457142857142858,
+        "median": 0.0001705,
+        "min": 0.0001233,
+        "max": 0.0002334,
+        "stddev": 3.09918866933965e-05
+      },
+      "answered_fields": 4,
+      "hallucinated_fields": 3,
+      "hallucination_rate": 0.75,
+      "definition": "answered fields without valid evidence or contradicting a human-validated reference / answered fields",
+      "ignored_answer_correctness": 0
+    },
+    {
+      "approach": "rag",
+      "config_id": "chunk300_overlap80_topk5",
+      "samples": 21,
+      "faithfulness": {
+        "count": 5,
+        "mean": 0.8,
+        "median": 1.0,
+        "min": 0.0,
+        "max": 1.0,
+        "stddev": 0.4
+      },
+      "answer_correctness": {
+        "count": 5,
+        "mean": 0.9297208761109536,
+        "median": 0.8967184046173372,
+        "min": 0.8609583750332258,
+        "max": 1.0,
+        "stddev": 0.058652661303033655
+      },
+      "total_ms": {
+        "count": 21,
+        "mean": 47289.57619047619,
+        "median": 55084.8,
+        "min": 912.9,
+        "max": 64438.7,
+        "stddev": 21260.170713844564
+      },
+      "prompt_tokens": {
+        "count": 21,
+        "mean": 1014.8095238095239,
+        "median": 1094.0,
+        "min": 669.0,
+        "max": 1163.0,
+        "stddev": 156.23474982267612
+      },
+      "completion_tokens": {
+        "count": 21,
+        "mean": 82.76190476190476,
+        "median": 75.0,
+        "min": 49.0,
+        "max": 140.0,
+        "stddev": 33.429249755700845
+      },
+      "estimated_cost": {
+        "count": 21,
+        "mean": 0.00020187857142857146,
+        "median": 0.00020655,
+        "min": 0.0001452,
+        "max": 0.00024945,
+        "stddev": 3.352546853984784e-05
+      },
+      "answered_fields": 5,
+      "hallucinated_fields": 3,
+      "hallucination_rate": 0.6,
+      "definition": "answered fields without valid evidence or contradicting a human-validated reference / answered fields",
+      "ignored_answer_correctness": 0
+    },
+    {
+      "approach": "rag",
+      "config_id": "chunk500_overlap50_topk3",
+      "samples": 21,
+      "faithfulness": {
+        "count": 2,
+        "mean": 1.0,
+        "median": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "stddev": 0.0
+      },
+      "answer_correctness": {
+        "count": 2,
+        "mean": 1.0,
+        "median": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "stddev": 0.0
+      },
+      "total_ms": {
+        "count": 21,
+        "mean": 36471.857142857145,
+        "median": 43891.1,
+        "min": 734.9,
+        "max": 52487.1,
+        "stddev": 17650.528953454475
+      },
+      "prompt_tokens": {
+        "count": 21,
+        "mean": 705.0952380952381,
+        "median": 769.0,
+        "min": 490.0,
+        "max": 841.0,
+        "stddev": 119.71152021657046
+      },
+      "completion_tokens": {
+        "count": 21,
+        "mean": 64.9047619047619,
+        "median": 56.0,
+        "min": 51.0,
+        "max": 105.0,
+        "stddev": 18.69021837856767
+      },
+      "estimated_cost": {
+        "count": 21,
+        "mean": 0.00014470714285714286,
+        "median": 0.00014655,
+        "min": 0.0001042,
+        "max": 0.00017835,
+        "stddev": 2.5085431579923445e-05
+      },
+      "answered_fields": 2,
+      "hallucinated_fields": 0,
+      "hallucination_rate": 0.0,
+      "definition": "answered fields without valid evidence or contradicting a human-validated reference / answered fields",
+      "ignored_answer_correctness": 0
+    },
+    {
+      "approach": "rag",
+      "config_id": "chunk500_overlap50_topk5",
+      "samples": 21,
+      "faithfulness": {
+        "count": 6,
+        "mean": 1.0,
+        "median": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "stddev": 0.0
+      },
+      "answer_correctness": {
+        "count": 6,
+        "mean": 0.8088178770958528,
+        "median": 0.858602332298205,
+        "min": 0.5548247039168704,
+        "max": 1.0,
+        "stddev": 0.14711344185602124
+      },
+      "total_ms": {
+        "count": 21,
+        "mean": 31099.34761904762,
+        "median": 32968.3,
+        "min": 745.2,
+        "max": 60800.2,
+        "stddev": 21529.47226439716
+      },
+      "prompt_tokens": {
+        "count": 21,
+        "mean": 869.2857142857143,
+        "median": 927.0,
+        "min": 490.0,
+        "max": 1071.0,
+        "stddev": 197.0032977382051
+      },
+      "completion_tokens": {
+        "count": 21,
+        "mean": 92.23809523809524,
+        "median": 108.0,
+        "min": 46.0,
+        "max": 161.0,
+        "stddev": 39.63032119825228
+      },
+      "estimated_cost": {
+        "count": 21,
+        "mean": 0.00018573571428571429,
+        "median": 0.0001699,
+        "min": 0.0001066,
+        "max": 0.00025185,
+        "stddev": 4.4954228422487966e-05
+      },
+      "answered_fields": 6,
+      "hallucinated_fields": 5,
+      "hallucination_rate": 0.8333333333333334,
+      "definition": "answered fields without valid evidence or contradicting a human-validated reference / answered fields",
+      "ignored_answer_correctness": 0
+    },
+    {
+      "approach": "rag",
+      "config_id": "chunk500_overlap80_topk3",
+      "samples": 21,
+      "faithfulness": {
+        "count": 3,
+        "mean": 1.0,
+        "median": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "stddev": 0.0
+      },
+      "answer_correctness": {
+        "count": 3,
+        "mean": 0.8598587425095371,
+        "median": 0.8967184046173372,
+        "min": 0.6828578229112741,
+        "max": 1.0,
+        "stddev": 0.13207009790302043
+      },
+      "total_ms": {
+        "count": 21,
+        "mean": 37603.385714285716,
+        "median": 45885.0,
+        "min": 740.1,
+        "max": 53261.7,
+        "stddev": 16706.641509613724
+      },
+      "prompt_tokens": {
+        "count": 21,
+        "mean": 752.2380952380952,
+        "median": 848.0,
+        "min": 502.0,
+        "max": 893.0,
+        "stddev": 153.41257934450417
+      },
+      "completion_tokens": {
+        "count": 21,
+        "mean": 70.80952380952381,
+        "median": 60.0,
+        "min": 46.0,
+        "max": 114.0,
+        "stddev": 22.98574930694699
+      },
+      "estimated_cost": {
+        "count": 21,
+        "mean": 0.00015532142857142858,
+        "median": 0.00016175,
+        "min": 0.0001116,
+        "max": 0.0001986,
+        "stddev": 2.9789557819847556e-05
+      },
+      "answered_fields": 3,
+      "hallucinated_fields": 2,
+      "hallucination_rate": 0.6666666666666666,
+      "definition": "answered fields without valid evidence or contradicting a human-validated reference / answered fields",
+      "ignored_answer_correctness": 0
+    },
+    {
+      "approach": "rag",
+      "config_id": "chunk500_overlap80_topk5",
+      "samples": 21,
+      "faithfulness": {
+        "count": 4,
+        "mean": 1.0,
+        "median": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "stddev": 0.0
+      },
+      "answer_correctness": {
+        "count": 4,
+        "mean": 0.9630261505248033,
+        "median": 0.977693098740938,
+        "min": 0.8967184046173372,
+        "max": 1.0,
+        "stddev": 0.04239462566132712
+      },
+      "total_ms": {
+        "count": 21,
+        "mean": 41183.295238095234,
+        "median": 48177.6,
+        "min": 824.9,
+        "max": 62986.6,
+        "stddev": 18874.88345930534
+      },
+      "prompt_tokens": {
+        "count": 21,
+        "mean": 860.047619047619,
+        "median": 987.0,
+        "min": 502.0,
+        "max": 1128.0,
+        "stddev": 229.68518334170363
+      },
+      "completion_tokens": {
+        "count": 21,
+        "mean": 73.14285714285714,
+        "median": 84.0,
+        "min": 51.0,
+        "max": 98.0,
+        "stddev": 18.095739341428555
+      },
+      "estimated_cost": {
+        "count": 21,
+        "mean": 0.00017289285714285714,
+        "median": 0.0001791,
+        "min": 0.00011345,
+        "max": 0.00022795,
+        "stddev": 3.7437809655971256e-05
+      },
+      "answered_fields": 4,
+      "hallucinated_fields": 3,
+      "hallucination_rate": 0.75,
+      "definition": "answered fields without valid evidence or contradicting a human-validated reference / answered fields",
+      "ignored_answer_correctness": 0
+    },
+    {
+      "approach": "rag",
+      "config_id": "chunk800_overlap50_topk3",
+      "samples": 21,
+      "faithfulness": {
+        "count": 3,
+        "mean": 1.0,
+        "median": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "stddev": 0.0
+      },
+      "answer_correctness": {
+        "count": 3,
+        "mean": 0.6881802430751632,
+        "median": 1.0,
+        "min": 0.06454072922548962,
+        "max": 1.0,
+        "stddev": 0.44097972925898604
+      },
+      "total_ms": {
+        "count": 21,
+        "mean": 33233.10952380953,
+        "median": 38162.4,
+        "min": 1398.5,
+        "max": 48938.7,
+        "stddev": 15109.531814778844
+      },
+      "prompt_tokens": {
+        "count": 21,
+        "mean": 632.1904761904761,
+        "median": 689.0,
+        "min": 343.0,
+        "max": 847.0,
+        "stddev": 163.62984331589016
+      },
+      "completion_tokens": {
+        "count": 21,
+        "mean": 68.80952380952381,
+        "median": 55.0,
+        "min": 50.0,
+        "max": 134.0,
+        "stddev": 28.71637834908031
+      },
+      "estimated_cost": {
+        "count": 21,
+        "mean": 0.00013611428571428573,
+        "median": 0.00013725,
+        "min": 8.215e-05,
+        "max": 0.00020735,
+        "stddev": 3.7586345490708974e-05
+      },
+      "answered_fields": 3,
+      "hallucinated_fields": 1,
+      "hallucination_rate": 0.3333333333333333,
+      "definition": "answered fields without valid evidence or contradicting a human-validated reference / answered fields",
+      "ignored_answer_correctness": 0
+    },
+    {
+      "approach": "rag",
+      "config_id": "chunk800_overlap50_topk5",
+      "samples": 21,
+      "faithfulness": {
+        "count": 3,
+        "mean": 1.0,
+        "median": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "stddev": 0.0
+      },
+      "answer_correctness": {
+        "count": 3,
+        "mean": 0.5785087204341947,
+        "median": 0.6828578229112741,
+        "min": 0.052668338391309716,
+        "max": 1.0,
+        "stddev": 0.39372229694070715
+      },
+      "total_ms": {
+        "count": 21,
+        "mean": 37473.46666666667,
+        "median": 47290.4,
+        "min": 737.1,
+        "max": 58825.8,
+        "stddev": 19193.00069430901
+      },
+      "prompt_tokens": {
+        "count": 21,
+        "mean": 774.4761904761905,
+        "median": 930.0,
+        "min": 464.0,
+        "max": 1015.0,
+        "stddev": 215.13088353872902
+      },
+      "completion_tokens": {
+        "count": 21,
+        "mean": 67.23809523809524,
+        "median": 54.0,
+        "min": 46.0,
+        "max": 131.0,
+        "stddev": 27.844645141185563
+      },
+      "estimated_cost": {
+        "count": 21,
+        "mean": 0.0001565142857142857,
+        "median": 0.000169,
+        "min": 0.0001001,
+        "max": 0.00023035,
+        "stddev": 4.362684064300091e-05
+      },
+      "answered_fields": 3,
+      "hallucinated_fields": 2,
+      "hallucination_rate": 0.6666666666666666,
+      "definition": "answered fields without valid evidence or contradicting a human-validated reference / answered fields",
+      "ignored_answer_correctness": 0
+    },
+    {
+      "approach": "rag",
+      "config_id": "chunk800_overlap80_topk3",
+      "samples": 21,
+      "faithfulness": {
+        "count": 3,
+        "mean": 1.0,
+        "median": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "stddev": 0.0
+      },
+      "answer_correctness": {
+        "count": 3,
+        "mean": 0.8598587425095371,
+        "median": 0.8967184046173372,
+        "min": 0.6828578229112741,
+        "max": 1.0,
+        "stddev": 0.13207009790302043
+      },
+      "total_ms": {
+        "count": 21,
+        "mean": 34936.64761904762,
+        "median": 41997.7,
+        "min": 786.3,
+        "max": 51385.3,
+        "stddev": 17263.500039061742
+      },
+      "prompt_tokens": {
+        "count": 21,
+        "mean": 706.1428571428571,
+        "median": 793.0,
+        "min": 348.0,
+        "max": 897.0,
+        "stddev": 196.97529110556596
+      },
+      "completion_tokens": {
+        "count": 21,
+        "mean": 67.66666666666667,
+        "median": 57.0,
+        "min": 51.0,
+        "max": 100.0,
+        "stddev": 17.66442034236465
+      },
+      "estimated_cost": {
+        "count": 21,
+        "mean": 0.00014652142857142858,
+        "median": 0.0001636,
+        "min": 8.53e-05,
+        "max": 0.00018035,
+        "stddev": 3.493410999032788e-05
+      },
+      "answered_fields": 3,
+      "hallucinated_fields": 2,
+      "hallucination_rate": 0.6666666666666666,
+      "definition": "answered fields without valid evidence or contradicting a human-validated reference / answered fields",
+      "ignored_answer_correctness": 0
+    },
+    {
+      "approach": "rag",
+      "config_id": "chunk800_overlap80_topk5",
+      "samples": 21,
+      "faithfulness": {
+        "count": 4,
+        "mean": 1.0,
+        "median": 1.0,
+        "min": 1.0,
+        "max": 1.0,
+        "stddev": 0.0
+      },
+      "answer_correctness": {
+        "count": 4,
+        "mean": 0.8645399001991219,
+        "median": 0.8876508889426068,
+        "min": 0.6828578229112741,
+        "max": 1.0,
+        "stddev": 0.11466308378039257
+      },
+      "total_ms": {
+        "count": 21,
+        "mean": 40341.619047619046,
+        "median": 49433.3,
+        "min": 1094.9,
+        "max": 61222.2,
+        "stddev": 20686.690416962694
+      },
+      "prompt_tokens": {
+        "count": 21,
+        "mean": 877.2857142857143,
+        "median": 977.0,
+        "min": 458.0,
+        "max": 1173.0,
+        "stddev": 233.45074791201733
+      },
+      "completion_tokens": {
+        "count": 21,
+        "mean": 74.9047619047619,
+        "median": 83.0,
+        "min": 54.0,
+        "max": 104.0,
+        "stddev": 17.568653800786276
+      },
+      "estimated_cost": {
+        "count": 21,
+        "mean": 0.00017653571428571428,
+        "median": 0.0001965,
+        "min": 0.0001024,
+        "max": 0.00021045,
+        "stddev": 3.6242710737921536e-05
+      },
+      "answered_fields": 4,
+      "hallucinated_fields": 3,
+      "hallucination_rate": 0.75,
+      "definition": "answered fields without valid evidence or contradicting a human-validated reference / answered fields",
+      "ignored_answer_correctness": 0
+    },
+    {
+      "approach": "regex",
+      "config_id": "baseline_regex",
+      "samples": 21,
+      "faithfulness": {
+        "count": 9,
+        "mean": 0.8888888888888888,
+        "median": 1.0,
+        "min": 0.0,
+        "max": 1.0,
+        "stddev": 0.31426968052735443
+      },
+      "answer_correctness": {
+        "count": 9,
+        "mean": 0.7967990890677245,
+        "median": 1.0,
+        "min": 0.18308109655175162,
+        "max": 1.0,
+        "stddev": 0.3286114890169865
+      },
+      "total_ms": {
+        "count": 21,
+        "mean": 6.9,
+        "median": 5.8,
+        "min": 1.6,
+        "max": 23.4,
+        "stddev": 5.157703438731696
+      },
+      "prompt_tokens": {
+        "count": 21,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "stddev": 0.0
+      },
+      "completion_tokens": {
+        "count": 21,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "stddev": 0.0
+      },
+      "estimated_cost": {
+        "count": 21,
+        "mean": 0.0,
+        "median": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "stddev": 0.0
+      },
+      "answered_fields": 9,
+      "hallucinated_fields": 4,
+      "hallucination_rate": 0.4444444444444444,
+      "definition": "answered fields without valid evidence or contradicting a human-validated reference / answered fields",
+      "ignored_answer_correctness": 0
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "split": "development",
+  "completed_at": "2026-07-22T22:57:15.469228+00:00",
+  "duration_seconds": 766.603,
+  "python": "3.11.9",
+  "packages": {
+    "ragas": "0.4.3",
+    "llama-index": "0.14.6",
+    "llama-index-llms-groq": "0.4.1",
+    "sentence-transformers": "5.1.2",
+    "faiss-cpu": "1.12.0"
+  },
+  "model": "openai/gpt-oss-120b",
+  "benchmark_sha256": "611436b6a8269fd1e36455acdb6add342e2178baf89c86a96e24227e5a741d40",
+  "experiments_sha256": "e8f4a1ce3ae016da02676915d19a18a3278785fe11a693e42328efb5dae842d5",
+  "selected_config_sha256": "1c08be85880b6193bf2b25e456f015c704fafe0f491998865903e7962b824f39",
+  "rows": 294,
+  "skip_ragas": false
+}

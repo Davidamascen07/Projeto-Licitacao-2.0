@@ -1,0 +1,55 @@
+# Credenciais e configuração local
+.env
+.env.*
+!.env.example
+
+# PDFs carregados e estado local do índice
+uploads/
+vector_index.faiss
+chunks_metadata.json
+data/*.lock
+data/.app-*.lock
+.storage.lock
+
+# Ambientes e caches Python
+.venv/
+venv/
+.testdeps/
+__pycache__/
+*.py[cod]
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+pytest-of-*/
+torchinductor_*/
+
+# Temporários de ferramentas e testes
+tmp/
+/tmp*/
+/tests/tmp*/
+/pip-build-tracker-*/
+/pip-target-*/
+/pip-ephem-wheel-cache-*/
+/pip-install-*/
+
+# Logs e arquivos de processo
+*.log
+*.pid
+
+# Backups locais de reindexação
+backups/
+reports/
+
+# Editores e assistentes locais
+.vscode/
+.idea/
+templates/.claude/
+
+# Sistema operacional
+Thumbs.db
+Desktop.ini
+.DS_Store

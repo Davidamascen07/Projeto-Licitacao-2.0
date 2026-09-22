@@ -1,0 +1,609 @@
+{
+  "benchmark_version": "1.0",
+  "created_at": "2026-07-21T15:26:03.885676+00:00",
+  "updated_at": "2026-07-21T21:19:15.635780+00:00",
+  "seed": 42,
+  "selection_method": "deterministic_sha256_shuffle; metadata diversity pending human review",
+  "documents": [
+    {
+      "document_id": "cf9d64be8f5b6005dd50b57bb3912c02d5c26ae99ab4938f90ed5fb0f105f2ff",
+      "filename": "Edital+e+anexos.pdf",
+      "sha256": "cf9d64be8f5b6005dd50b57bb3912c02d5c26ae99ab4938f90ed5fb0f105f2ff",
+      "source": null,
+      "source_url": null,
+      "collection_date": null,
+      "orgao": "Município de São José do Sul",
+      "uf": "RS",
+      "modalidade": "leilão",
+      "metadata_status": "validated",
+      "split": "development",
+      "annotation_status": "validated",
+      "references": {
+        "valor_estimado": {
+          "value": 449141.0,
+          "normalized_value": "449141.0",
+          "page": 2,
+          "evidence_text": "O valor total de avaliação dos bens é de R$ 449.141,00 (quatrocentos e quarenta e nove mil, cento e quarenta e um reais).",
+          "validated_by_human": true,
+          "validated_by": "david_damasceno",
+          "validated_at": "2026-07-21T21:19:14.812908+00:00",
+          "note": null,
+          "import_sources": [
+            "C:\\Users\\david\\Downloads\\resumo_benchmark_preenchido.json",
+            "E:\\projetos\\00- projeto ia\\Projeto-licitao\\evaluation\\review_submissions\\david_damasceno_supplement.json"
+          ]
+        },
+        "modalidade": {
+          "value": "leilão",
+          "normalized_value": "leilão",
+          "page": 1,
+          "evidence_text": "LEILÃO Nº 001/2026 (Online e Presencial)",
+          "validated_by_human": true,
+          "validated_by": "david_damasceno",
+          "validated_at": "2026-07-21T21:19:14.851463+00:00",
+          "note": null,
+          "import_sources": [
+            "C:\\Users\\david\\Downloads\\resumo_benchmark_preenchido.json",
+            "E:\\projetos\\00- projeto ia\\Projeto-licitao\\evaluation\\review_submissions\\david_damasceno_supplement.json"
+          ]
+        },
+        "prazo_entrega_proposta": {
+          "value": "2026-08-13 14:30:00",
+          "normalized_value": "2026-08-13 14:30:00",
+          "page": 1,
+          "evidence_text": "Abertura da Sessão Virtual: 13/08/2026, às 14h30min.",
+          "validated_by_human": true,
+          "validated_by": "david_damasceno",
+          "validated_at": "2026-07-21T21:19:14.890020+00:00",
+          "note": "Para esta modalidade, foi adotado como prazo operacional o encerramento/início da sessão de lances indicado no preâmbulo.",
+          "import_sources": [
+            "C:\\Users\\david\\Downloads\\resumo_benchmark_preenchido.json",
+            "E:\\projetos\\00- projeto ia\\Projeto-licitao\\evaluation\\review_submissions\\david_damasceno_supplement.json"
+          ]
+        }
+      },
+      "metadata_validated_by": "david_damasceno",
+      "metadata_validated_at": "2026-07-21T21:19:14.647580+00:00"
+    },
+    {
+      "document_id": "c8b8bc82a2ae07ac36dd8a047980f26a40d64132f5ffe4cb3dd8937cba292bb2",
+      "filename": "01.Edital_credenciamento_01_2024.pdf",
+      "sha256": "c8b8bc82a2ae07ac36dd8a047980f26a40d64132f5ffe4cb3dd8937cba292bb2",
+      "source": null,
+      "source_url": null,
+      "collection_date": null,
+      "orgao": "2º Regimento de Cavalaria Mecanizado - Exército Brasileiro",
+      "uf": "RS",
+      "modalidade": "credenciamento",
+      "metadata_status": "validated",
+      "split": "development",
+      "annotation_status": "validated",
+      "references": {
+        "valor_estimado": {
+          "value": 950000.0,
+          "normalized_value": "950000.0",
+          "page": 13,
+          "evidence_text": "D8SAFCTOCSA, no valor de R$ 950.000,00 (novecentos e cinquenta mil reais) – Empenho Estimativo.",
+          "validated_by_human": true,
+          "validated_by": "david_damasceno",
+          "validated_at": "2026-07-21T21:19:14.919581+00:00",
+          "note": "O valor é explicitamente indicado para OCS.",
+          "import_sources": [
+            "C:\\Users\\david\\Downloads\\resumo_benchmark_preenchido.json",
+            "E:\\projetos\\00- projeto ia\\Projeto-licitao\\evaluation\\review_submissions\\david_damasceno_supplement.json"
+          ]
+        },
+        "modalidade": {
+          "value": "credenciamento",
+          "normalized_value": "credenciamento",
+          "page": 1,
+          "evidence_text": "EDITAL DE CREDENCIAMENTO Nº 01/2024 – PADRÃO",
+          "validated_by_human": true,
+          "validated_by": "david_damasceno",
+          "validated_at": "2026-07-21T21:19:14.943655+00:00",
+          "note": null,
+          "import_sources": [
+            "C:\\Users\\david\\Downloads\\resumo_benchmark_preenchido.json",
+            "E:\\projetos\\00- projeto ia\\Projeto-licitao\\evaluation\\review_submissions\\david_damasceno_supplement.json"
+          ]
+        },
+        "prazo_entrega_proposta": {
+          "value": "prazo indeterminado",
+          "normalized_value": "prazo indeterminado",
+          "page": 6,
+          "evidence_text": "O presente Edital vigorará por PRAZO INDETERMINADO, a partir da sua publicação no Portal Nacional de Contratações Públicas - PNCP.",
+          "validated_by_human": true,
+          "validated_by": "david_damasceno",
+          "validated_at": "2026-07-21T21:19:14.977338+00:00",
+          "note": null,
+          "import_sources": [
+            "C:\\Users\\david\\Downloads\\resumo_benchmark_preenchido.json",
+            "E:\\projetos\\00- projeto ia\\Projeto-licitao\\evaluation\\review_submissions\\david_damasceno_supplement.json"
+          ]
+        }
+      },
+      "metadata_validated_by": "david_damasceno",
+      "metadata_validated_at": "2026-07-21T21:19:14.890020+00:00"
+    },
+    {
+      "document_id": "641991ceb6e660eca6788fa1f67f78ad3535fd2e51a3827e44dccf301f4a57c8",
+      "filename": "02---Edital-Pregao-Eletronico.pdf",
+      "sha256": "641991ceb6e660eca6788fa1f67f78ad3535fd2e51a3827e44dccf301f4a57c8",
+      "source": null,
+      "source_url": null,
+      "collection_date": null,
+      "orgao": "Consórcio Intermunicipal do Médio Vale do Itajaí - CIMVI",
+      "uf": "SC",
+      "modalidade": "pregão eletrônico",
+      "metadata_status": "validated",
+      "split": "development",
+      "annotation_status": "validated",
+      "references": {
+        "valor_estimado": {
+          "value": 128068464.63,
+          "normalized_value": "128068464.63",
+          "page": 2,
+          "evidence_text": "Total Geral da Contratação: R$ 128.068.464,63 (cento e vinte e oito milhões, sessenta e oito mil, quatrocentos e sessenta e quatro reais e sessenta e três centavos).",
+          "validated_by_human": true,
+          "validated_by": "david_damasceno",
+          "validated_at": "2026-07-21T21:19:14.989446+00:00",
+          "note": null,
+          "import_sources": [
+            "C:\\Users\\david\\Downloads\\resumo_benchmark_preenchido.json",
+            "E:\\projetos\\00- projeto ia\\Projeto-licitao\\evaluation\\review_submissions\\david_damasceno_supplement.json"
+          ]
+        },
+        "modalidade": {
+          "value": "pregão eletrônico",
+          "normalized_value": "pregão eletrônico",
+          "page": 1,
+          "evidence_text": "PREGÃO ELETRÔNICO Nº 105/2026",
+          "validated_by_human": true,
+          "validated_by": "david_damasceno",
+          "validated_at": "2026-07-21T21:19:15.003958+00:00",
+          "note": null,
+          "import_sources": [
+            "C:\\Users\\david\\Downloads\\resumo_benchmark_preenchido.json",
+            "E:\\projetos\\00- projeto ia\\Projeto-licitao\\evaluation\\review_submissions\\david_damasceno_supplement.json"
+          ]
+        },
+        "prazo_entrega_proposta": {
+          "value": "2026-07-21 09:00:00",
+          "normalized_value": "2026-07-21 09:00:00",
+          "page": 2,
+          "evidence_text": "FIM DO RECEBIMENTO DAS PROPOSTAS: 21/07/2026 ÀS 09h00 horas",
+          "validated_by_human": true,
+          "validated_by": "david_damasceno",
+          "validated_at": "2026-07-21T21:19:15.014991+00:00",
+          "note": null,
+          "import_sources": [
+            "C:\\Users\\david\\Downloads\\resumo_benchmark_preenchido.json",
+            "E:\\projetos\\00- projeto ia\\Projeto-licitao\\evaluation\\review_submissions\\david_damasceno_supplement.json"
+          ]
+        }
+      },
+      "metadata_validated_by": "david_damasceno",
+      "metadata_validated_at": "2026-07-21T21:19:14.977338+00:00"
+    },
+    {
+      "document_id": "be756c98d704edb6500682b686627775d89ca13b2f4b39c00663ab6e539c00bc",
+      "filename": "874745.pdf",
+      "sha256": "be756c98d704edb6500682b686627775d89ca13b2f4b39c00663ab6e539c00bc",
+      "source": null,
+      "source_url": null,
+      "collection_date": null,
+      "orgao": "Município de Monte Belo do Sul",
+      "uf": "RS",
+      "modalidade": "concorrência eletrônica",
+      "metadata_status": "validated",
+      "split": "development",
+      "annotation_status": "validated",
+      "references": {
+        "valor_estimado": {
+          "value": 2268550.51,
+          "normalized_value": "2268550.51",
+          "page": 2,
+          "evidence_text": "Valor Referência R$ 2.268.550,51, (Dois Milhões Duzentos E Sessenta E Oito Mil E Quinhentos E Cinquenta Reais E Cinquenta E Um Centavos).",
+          "validated_by_human": true,
+          "validated_by": "david_damasceno",
+          "validated_at": "2026-07-21T21:19:15.042059+00:00",
+          "note": null,
+          "import_sources": [
+            "C:\\Users\\david\\Downloads\\resumo_benchmark_preenchido.json",
+            "E:\\projetos\\00- projeto ia\\Projeto-licitao\\evaluation\\review_submissions\\david_damasceno_supplement.json"
+          ]
+        },
+        "modalidade": {
+          "value": "concorrência eletrônica",
+          "normalized_value": "concorrência eletrônica",
+          "page": 1,
+          "evidence_text": "CONCORRÊNCIA ELETRÔNICA 003/2026",
+          "validated_by_human": true,
+          "validated_by": "david_damasceno",
+          "validated_at": "2026-07-21T21:19:15.066783+00:00",
+          "note": null,
+          "import_sources": [
+            "C:\\Users\\david\\Downloads\\resumo_benchmark_preenchido.json",
+            "E:\\projetos\\00- projeto ia\\Projeto-licitao\\evaluation\\review_submissions\\david_damasceno_supplement.json"
+          ]
+        },
+        "prazo_entrega_proposta": {
+          "value": "2026-07-03 09:00:00",
+          "normalized_value": "2026-07-03 09:00:00",
+          "page": 1,
+          "evidence_text": "Recebimento das Propostas: a partir das 09 horas do dia 02/06/2026, até as 09 horas do dia 03/07/2026",
+          "validated_by_human": true,
+          "validated_by": "david_damasceno",
+          "validated_at": "2026-07-21T21:19:15.087050+00:00",
+          "note": null,
+          "import_sources": [
+            "C:\\Users\\david\\Downloads\\resumo_benchmark_preenchido.json",
+            "E:\\projetos\\00- projeto ia\\Projeto-licitao\\evaluation\\review_submissions\\david_damasceno_supplement.json"
+          ]
+        }
+      },
+      "metadata_validated_by": "david_damasceno",
+      "metadata_validated_at": "2026-07-21T21:19:15.014991+00:00"
+    },
+    {
+      "document_id": "652462726db0b4bcfc0f0e2395180f981c8878dc14f7b2192ff3c9a1c8022194",
+      "filename": "1123420260129-Termo_1.pdf",
+      "sha256": "652462726db0b4bcfc0f0e2395180f981c8878dc14f7b2192ff3c9a1c8022194",
+      "source": null,
+      "source_url": null,
+      "collection_date": null,
+      "orgao": "Universidade do Estado da Bahia - UNEB, Departamento de Ciências Humanas DCH IV/Jacobina",
+      "uf": "BA",
+      "modalidade": "dispensa de licitação",
+      "metadata_status": "validated",
+      "split": "development",
+      "annotation_status": "validated",
+      "references": {
+        "valor_estimado": {
+          "value": 6300.95,
+          "normalized_value": "6300.95",
+          "page": 19,
+          "evidence_text": "TOTAL GERAL ESTIMADO R$ 6.300,95",
+          "validated_by_human": true,
+          "validated_by": "david_damasceno",
+          "validated_at": "2026-07-21T21:19:15.096986+00:00",
+          "note": null,
+          "import_sources": [
+            "C:\\Users\\david\\Downloads\\resumo_benchmark_preenchido.json",
+            "E:\\projetos\\00- projeto ia\\Projeto-licitao\\evaluation\\review_submissions\\david_damasceno_supplement.json"
+          ]
+        },
+        "modalidade": {
+          "value": "dispensa de licitação",
+          "normalized_value": "dispensa de licitação",
+          "page": 1,
+          "evidence_text": "A presente Dispensa de Licitação tem por objeto adquirir o MATERIAL DE CONSUMO abaixo relacionado:",
+          "validated_by_human": true,
+          "validated_by": "david_damasceno",
+          "validated_at": "2026-07-21T21:19:15.109597+00:00",
+          "note": null,
+          "import_sources": [
+            "C:\\Users\\david\\Downloads\\resumo_benchmark_preenchido.json",
+            "E:\\projetos\\00- projeto ia\\Projeto-licitao\\evaluation\\review_submissions\\david_damasceno_supplement.json"
+          ]
+        },
+        "prazo_entrega_proposta": {
+          "value": null,
+          "normalized_value": null,
+          "page": 1,
+          "evidence_text": "TERMO DE REFERÊNCIA",
+          "validated_by_human": true,
+          "validated_by": "david_damasceno",
+          "validated_at": "2026-07-21T21:19:15.122628+00:00",
+          "note": "O documento não informa data ou prazo para recebimento de propostas.",
+          "import_sources": [
+            "C:\\Users\\david\\Downloads\\resumo_benchmark_preenchido.json",
+            "E:\\projetos\\00- projeto ia\\Projeto-licitao\\evaluation\\review_submissions\\david_damasceno_supplement.json"
+          ]
+        }
+      },
+      "metadata_validated_by": "david_damasceno",
+      "metadata_validated_at": "2026-07-21T21:19:15.087050+00:00"
+    },
+    {
+      "document_id": "6f3c1a66a3c2903f0ab613f40c60bee62e8ef0f16d01335235408d89a722a271",
+      "filename": "documento.pdf",
+      "sha256": "6f3c1a66a3c2903f0ab613f40c60bee62e8ef0f16d01335235408d89a722a271",
+      "source": null,
+      "source_url": null,
+      "collection_date": null,
+      "orgao": "Município de Carinhanha",
+      "uf": "BA",
+      "modalidade": "credenciamento",
+      "metadata_status": "validated",
+      "split": "development",
+      "annotation_status": "validated",
+      "references": {
+        "valor_estimado": {
+          "value": 650040.0,
+          "normalized_value": "650040.0",
+          "page": 18,
+          "evidence_text": "O custo estimado anual (global) da presente contratação é de R$ 650.040,00 (Seiscentos e cinquenta mil e quarenta reais).",
+          "validated_by_human": true,
+          "validated_by": "david_damasceno",
+          "validated_at": "2026-07-21T21:19:15.137710+00:00",
+          "note": "Há uma tabela posterior com total anual divergente; foi priorizada a declaração expressa do item 8.1.",
+          "import_sources": [
+            "C:\\Users\\david\\Downloads\\resumo_benchmark_preenchido.json",
+            "E:\\projetos\\00- projeto ia\\Projeto-licitao\\evaluation\\review_submissions\\david_damasceno_supplement.json"
+          ]
+        },
+        "modalidade": {
+          "value": "credenciamento",
+          "normalized_value": "credenciamento",
+          "page": 1,
+          "evidence_text": "CREDENCIAMENTO Nº 006/2026",
+          "validated_by_human": true,
+          "validated_by": "david_damasceno",
+          "validated_at": "2026-07-21T21:19:15.155361+00:00",
+          "note": null,
+          "import_sources": [
+            "C:\\Users\\david\\Downloads\\resumo_benchmark_preenchido.json",
+            "E:\\projetos\\00- projeto ia\\Projeto-licitao\\evaluation\\review_submissions\\david_damasceno_supplement.json"
+          ]
+        },
+        "prazo_entrega_proposta": {
+          "value": "a qualquer tempo",
+          "normalized_value": "a qualquer tempo",
+          "page": 3,
+          "evidence_text": "O credenciamento será realizado de forma contínua, permitindo a adesão de novos interessados a qualquer tempo, desde que atendam às condições e exigências deste Edital.",
+          "validated_by_human": true,
+          "validated_by": "david_damasceno",
+          "validated_at": "2026-07-21T21:19:15.178709+00:00",
+          "note": null,
+          "import_sources": [
+            "C:\\Users\\david\\Downloads\\resumo_benchmark_preenchido.json",
+            "E:\\projetos\\00- projeto ia\\Projeto-licitao\\evaluation\\review_submissions\\david_damasceno_supplement.json"
+          ]
+        }
+      },
+      "metadata_validated_by": "david_damasceno",
+      "metadata_validated_at": "2026-07-21T21:19:15.122628+00:00"
+    },
+    {
+      "document_id": "f7463e4e3b5ac2687850a83588cfffb438244a358e73619c871f8ab3611b190c",
+      "filename": "Edital.pdf",
+      "sha256": "f7463e4e3b5ac2687850a83588cfffb438244a358e73619c871f8ab3611b190c",
+      "source": null,
+      "source_url": null,
+      "collection_date": null,
+      "orgao": "Fundação Municipal de Cultura de Campo Grande - FUNDAC",
+      "uf": "MS",
+      "modalidade": "credenciamento",
+      "metadata_status": "validated",
+      "split": "development",
+      "annotation_status": "validated",
+      "references": {
+        "valor_estimado": {
+          "value": 650000.0,
+          "normalized_value": "650000.0",
+          "page": 2,
+          "evidence_text": "O valor total estimado para o presente credenciamento é de R$650.000,00 (Seiscentos e cinquenta mil reais)",
+          "validated_by_human": true,
+          "validated_by": "david_damasceno",
+          "validated_at": "2026-07-21T21:19:15.290672+00:00",
+          "note": null,
+          "import_sources": [
+            "C:\\Users\\david\\Downloads\\resumo_benchmark_preenchido.json",
+            "E:\\projetos\\00- projeto ia\\Projeto-licitao\\evaluation\\review_submissions\\david_damasceno_supplement.json"
+          ]
+        },
+        "modalidade": {
+          "value": "credenciamento",
+          "normalized_value": "credenciamento",
+          "page": 1,
+          "evidence_text": "EDITAL DE CREDENCIAMENTO N. 001/2025",
+          "validated_by_human": true,
+          "validated_by": "david_damasceno",
+          "validated_at": "2026-07-21T21:19:15.397059+00:00",
+          "note": null,
+          "import_sources": [
+            "C:\\Users\\david\\Downloads\\resumo_benchmark_preenchido.json",
+            "E:\\projetos\\00- projeto ia\\Projeto-licitao\\evaluation\\review_submissions\\david_damasceno_supplement.json"
+          ]
+        },
+        "prazo_entrega_proposta": {
+          "value": "12 meses a contar da publicação do aviso de credenciamento",
+          "normalized_value": "12 meses a contar da publicação do aviso de credenciamento",
+          "page": 1,
+          "evidence_text": "O edital credenciamento permanecerá aberto por 12 (doze) meses a contar da publicação do aviso de credenciamento",
+          "validated_by_human": true,
+          "validated_by": "david_damasceno",
+          "validated_at": "2026-07-21T21:19:15.507219+00:00",
+          "note": null,
+          "import_sources": [
+            "C:\\Users\\david\\Downloads\\resumo_benchmark_preenchido.json",
+            "E:\\projetos\\00- projeto ia\\Projeto-licitao\\evaluation\\review_submissions\\david_damasceno_supplement.json"
+          ]
+        }
+      },
+      "metadata_validated_by": "david_damasceno",
+      "metadata_validated_at": "2026-07-21T21:19:15.178709+00:00"
+    },
+    {
+      "document_id": "6b421ecc10a1e7fe2fc15a215008dcbee2322078ec20bd749eb9f9c6bd924594",
+      "filename": "edital609.pdf",
+      "sha256": "6b421ecc10a1e7fe2fc15a215008dcbee2322078ec20bd749eb9f9c6bd924594",
+      "source": null,
+      "source_url": null,
+      "collection_date": null,
+      "orgao": "MGI - Minas Gerais Participações S.A.",
+      "uf": "MG",
+      "modalidade": "leilão eletrônico",
+      "metadata_status": "validated",
+      "split": "test",
+      "annotation_status": "validated",
+      "references": {
+        "valor_estimado": {
+          "value": 2321000.0,
+          "normalized_value": "2321000.0",
+          "page": 10,
+          "evidence_text": "VALOR TOTAL DOS ITEM: R$ 2.321.000,00",
+          "validated_by_human": true,
+          "validated_by": "david_damasceno",
+          "validated_at": "2026-07-21T21:19:15.518265+00:00",
+          "note": null,
+          "import_sources": [
+            "C:\\Users\\david\\Downloads\\resumo_benchmark_preenchido.json",
+            "E:\\projetos\\00- projeto ia\\Projeto-licitao\\evaluation\\review_submissions\\david_damasceno_supplement.json"
+          ]
+        },
+        "modalidade": {
+          "value": "leilão eletrônico",
+          "normalized_value": "leilão eletrônico",
+          "page": 1,
+          "evidence_text": "EDITAL DE LEILÃO MGI- 08/2026 – VENDA DE IMÓVEL PERTENCENTE À MGI",
+          "validated_by_human": true,
+          "validated_by": "david_damasceno",
+          "validated_at": "2026-07-21T21:19:15.532285+00:00",
+          "note": null,
+          "import_sources": [
+            "C:\\Users\\david\\Downloads\\resumo_benchmark_preenchido.json",
+            "E:\\projetos\\00- projeto ia\\Projeto-licitao\\evaluation\\review_submissions\\david_damasceno_supplement.json"
+          ]
+        },
+        "prazo_entrega_proposta": {
+          "value": "2026-08-17 10:30:00",
+          "normalized_value": "2026-08-17 10:30:00",
+          "page": 2,
+          "evidence_text": "DATA DE TÉRMINO PARA LANCES: 17/08/2026. HORA: 10:30 (dez horas e trinta minutos)",
+          "validated_by_human": true,
+          "validated_by": "david_damasceno",
+          "validated_at": "2026-07-21T21:19:15.542307+00:00",
+          "note": null,
+          "import_sources": [
+            "C:\\Users\\david\\Downloads\\resumo_benchmark_preenchido.json",
+            "E:\\projetos\\00- projeto ia\\Projeto-licitao\\evaluation\\review_submissions\\david_damasceno_supplement.json"
+          ]
+        }
+      },
+      "metadata_validated_by": "david_damasceno",
+      "metadata_validated_at": "2026-07-21T21:19:15.507219+00:00"
+    },
+    {
+      "document_id": "c44dc4318cdfb240ea6a0818d3a1e2ebad0fa317bf1cfdf2603b5719aeb4760f",
+      "filename": "EDITAL_DE_CREDENCIAMENTO_004.2025_assinado.pdf",
+      "sha256": "c44dc4318cdfb240ea6a0818d3a1e2ebad0fa317bf1cfdf2603b5719aeb4760f",
+      "source": null,
+      "source_url": null,
+      "collection_date": null,
+      "orgao": "Fundo Municipal de Saúde de Bela Vista de Goiás",
+      "uf": "GO",
+      "modalidade": "credenciamento",
+      "metadata_status": "validated",
+      "split": "test",
+      "annotation_status": "validated",
+      "references": {
+        "valor_estimado": {
+          "value": null,
+          "normalized_value": null,
+          "page": 2,
+          "evidence_text": "Os valores a serem pagos conforme a prestação dos serviços serão os constantes do ANEXO V, da tabela de cargos, vagas, atribuições genéricas, valores e carga horária dos serviços a serem prestados, devidamente aprovados pelo Conselho Municipal de Saúde",
+          "validated_by_human": true,
+          "validated_by": "david_damasceno",
+          "validated_at": "2026-07-21T21:19:15.595536+00:00",
+          "note": "O edital não apresenta valor global ou total estimado; os valores individuais não foram somados.",
+          "import_sources": [
+            "C:\\Users\\david\\Downloads\\resumo_benchmark_preenchido.json",
+            "E:\\projetos\\00- projeto ia\\Projeto-licitao\\evaluation\\review_submissions\\david_damasceno_supplement.json"
+          ]
+        },
+        "modalidade": {
+          "value": "credenciamento",
+          "normalized_value": "credenciamento",
+          "page": 1,
+          "evidence_text": "EDITAL DE CHAMAMENTO PÚBLICO PARA CREDENCIAMENTO Nº 004/2025",
+          "validated_by_human": true,
+          "validated_by": "david_damasceno",
+          "validated_at": "2026-07-21T21:19:15.613179+00:00",
+          "note": null,
+          "import_sources": [
+            "C:\\Users\\david\\Downloads\\resumo_benchmark_preenchido.json",
+            "E:\\projetos\\00- projeto ia\\Projeto-licitao\\evaluation\\review_submissions\\david_damasceno_supplement.json"
+          ]
+        },
+        "prazo_entrega_proposta": {
+          "value": "2026-12-31",
+          "normalized_value": "2026-12-31",
+          "page": 2,
+          "evidence_text": "Os interessados poderão realizar inscrição até 31 de Dezembro de 2026, admitindo-se a apresentação de documentos a qualquer tempo até a data indicada",
+          "validated_by_human": true,
+          "validated_by": "david_damasceno",
+          "validated_at": "2026-07-21T21:19:15.635780+00:00",
+          "note": null,
+          "import_sources": [
+            "C:\\Users\\david\\Downloads\\resumo_benchmark_preenchido.json",
+            "E:\\projetos\\00- projeto ia\\Projeto-licitao\\evaluation\\review_submissions\\david_damasceno_supplement.json"
+          ]
+        }
+      },
+      "metadata_validated_by": "david_damasceno",
+      "metadata_validated_at": "2026-07-21T21:19:15.575969+00:00"
+    },
+    {
+      "document_id": "e3a260a4e794a222785c34b6da2d7f111e75f333c99e64553b6ff62701800e7f",
+      "filename": "EDITAL_CC006.pdf",
+      "sha256": "e3a260a4e794a222785c34b6da2d7f111e75f333c99e64553b6ff62701800e7f",
+      "source": null,
+      "source_url": null,
+      "collection_date": null,
+      "orgao": "Prefeitura Municipal de Massaranduba",
+      "uf": "PB",
+      "modalidade": "concorrência eletrônica",
+      "metadata_status": "validated",
+      "split": "test",
+      "annotation_status": "validated",
+      "references": {
+        "valor_estimado": {
+          "value": 874905.54,
+          "normalized_value": "874905.54",
+          "page": 47,
+          "evidence_text": "VALOR TOTAL:] R$ 874.905,54",
+          "validated_by_human": true,
+          "validated_by": "david_damasceno",
+          "validated_at": "2026-07-21T21:19:15.552341+00:00",
+          "note": null,
+          "import_sources": [
+            "C:\\Users\\david\\Downloads\\resumo_benchmark_preenchido.json",
+            "E:\\projetos\\00- projeto ia\\Projeto-licitao\\evaluation\\review_submissions\\david_damasceno_supplement.json"
+          ]
+        },
+        "modalidade": {
+          "value": "concorrência eletrônica",
+          "normalized_value": "concorrência eletrônica",
+          "page": 1,
+          "evidence_text": "MODALIDADE: CONCORRÊNCIA ELETRÔNICA",
+          "validated_by_human": true,
+          "validated_by": "david_damasceno",
+          "validated_at": "2026-07-21T21:19:15.567314+00:00",
+          "note": null,
+          "import_sources": [
+            "C:\\Users\\david\\Downloads\\resumo_benchmark_preenchido.json",
+            "E:\\projetos\\00- projeto ia\\Projeto-licitao\\evaluation\\review_submissions\\david_damasceno_supplement.json"
+          ]
+        },
+        "prazo_entrega_proposta": {
+          "value": "2026-08-07 09:00:00",
+          "normalized_value": "2026-08-07 09:00:00",
+          "page": 1,
+          "evidence_text": "Data de abertura da sessão pública: 07/08/2026. Horário: 09:00 - horário de Brasília.",
+          "validated_by_human": true,
+          "validated_by": "david_damasceno",
+          "validated_at": "2026-07-21T21:19:15.575969+00:00",
+          "note": "O item 8.4 confirma que a proposta pode ser retirada ou substituída somente até a abertura da sessão pública.",
+          "import_sources": [
+            "C:\\Users\\david\\Downloads\\resumo_benchmark_preenchido.json",
+            "E:\\projetos\\00- projeto ia\\Projeto-licitao\\evaluation\\review_submissions\\david_damasceno_supplement.json"
+          ]
+        }
+      },
+      "metadata_validated_by": "david_damasceno",
+      "metadata_validated_at": "2026-07-21T21:19:15.542307+00:00"
+    }
+  ]
+}
