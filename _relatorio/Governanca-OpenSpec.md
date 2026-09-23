@@ -123,13 +123,28 @@ Só depois do PR de proposta ser aprovado e mergeado (ou aprovado sem merge, dep
 /opsx:apply --change adicionar-validador-elegibilidade
 ```
 
-Isso implementa o código seguindo o `tasks.md` já aprovado. Abre-se um **segundo PR**, agora sim com código:
+Isso implementa o código na branch `feature/validador-elegibilidade`, seguindo o `tasks.md` já aprovado.
+
+**6. Sincronizar as specs — ainda dentro da mesma branch, antes de abrir o PR**
+
+Importante: `/opsx:sync` e `/opsx:archive` rodam **antes** de abrir o PR de código, na mesma branch `feature/validador-elegibilidade` — não depois do merge, direto na `main`. Isso evita que a atualização final das specs fique sem revisão de ninguém.
+
+```
+/opsx:sync --change adicionar-validador-elegibilidade
+/opsx:archive adicionar-validador-elegibilidade
+```
+
+Isso atualiza `openspec/specs/` com a spec definitiva e move a pasta do change para `openspec/changes/archive/`. Tudo isso entra no mesmo commit/branch do código.
+
+**7. Abrir o PR de código**
 
 Título do PR: **`[CÓDIGO] Validador de elegibilidade`** (referenciando o PR/change de proposta)
 
-**6. Merge final**
+Esse PR contém, de uma vez: o código novo, os testes, a spec final atualizada e o change arquivado. O time revisa código e a consistência da spec junto — não fica nenhum passo solto sem review.
 
-Depois do PR de código aprovado e mergeado, roda `/opsx:sync` (mescla os deltas nas specs principais) e `/opsx:archive` (move o change para `openspec/changes/archive/`).
+**8. Merge final**
+
+Depois do PR de código aprovado, o merge deixa `main` com tudo consistente de uma vez: código, specs atualizadas e histórico do change arquivado.
 
 ### Comandos do Dia a Dia — Via Claude (Forma Que a Equipe Vai Usar)
 
@@ -202,7 +217,9 @@ Como cada change gera **dois PRs separados** (um só com os documentos da propos
 | Tipo de PR | Prefixo da branch | Exemplo | Contém |
 |---|---|---|---|
 | Proposta (documentos) | `proposta/<nome-do-change>` | `proposta/validador-elegibilidade` | Só `openspec/changes/<nome>/` (markdown) |
-| Código (implementação) | `feature/<nome-do-change>` | `feature/validador-elegibilidade` | Código de verdade (services/, tests/, etc.) |
+| Código (implementação) | `feature/<nome-do-change>` | `feature/validador-elegibilidade` | Código (services/, tests/, etc.) **+** `openspec/specs/` atualizado (via `/opsx:sync`) **+** o change movido para `openspec/changes/archive/` (via `/opsx:archive`) |
+
+**Só duas branches, não três**: a atualização final de `openspec/specs/` não vira uma branch/PR à parte — ela viaja dentro da branch `feature/` (rodando `/opsx:sync` + `/opsx:archive` *antes* de abrir o PR de código, não depois do merge). Assim a spec definitiva é revisada junto com o código, no mesmo PR, e nada é escrito direto na `main` sem passar por review.
 
 ### Título do PR
 
