@@ -1,0 +1,80 @@
+# OpenSpec Configuration - Projeto-Licitação 2.0
+# Framework para documentação de especificações de features e arquitetura
+
+project:
+  name: Projeto-Licitação 2.0
+  description: Plataforma inteligente de análise de editais públicos
+  owner: DAVID DAMASCENO, Danielle Ballester
+  version: "2.0"
+  created: 2026-09-23
+
+# Estrutura de documentação
+specs:
+  location: specs/
+  template: spec-template.md
+  naming: "[FEATURE-XXX] Nome da Feature"
+  categories:
+    - frontend
+    - backend
+    - data
+    - infrastructure
+    - security
+
+architecture:
+  location: architecture/
+  template: architecture-template.md
+  naming: "[ARCH-XXX] Nome da Decisão"
+
+# Padrões de naming de issues
+issue_template:
+  spec: "Relacionado: [FEATURE-XXX]"
+  branch: "feature/FEATURE-XXX-slug-da-feature"
+  pr: "feat: [FEATURE-XXX] Descrição concisa"
+
+# Status workflow
+statuses:
+  - Proposta
+  - Em Revisão
+  - Aprovada
+  - Em Desenvolvimento
+  - Implementada
+  - Deployed
+
+# Tipos de requisitos
+requirements:
+  - RF  # Requisito Funcional
+  - RNF # Requisito Não-Funcional
+  - RSE # Requisito de Segurança
+  - RUS # Requisito de Usabilidade
+
+# Estimativas de esforço (T-shirt sizing)
+effort_scale:
+  XS: 1-2 dias
+  S: 3-5 dias
+  M: 1-2 semanas
+  L: 2-4 semanas
+  XL: 4+ semanas
+
+# Responsáveis por categoria (RACI)
+owners:
+  frontend: Danielle Ballester
+  backend: DAVID DAMASCENO
+  ml_ai: Andre Joas
+  infrastructure: DAVID DAMASCENO
+  security: DAVID DAMASCENO
+  product: Danielle Ballester
+
+# Tools de integração
+integrations:
+  github:
+    org: Davidamascen07
+    repo: Projeto-Licitacao-2.0
+  slack:
+    channel: "#projeto-licitacao-2.0"
+  database: PostgreSQL 15+
+
+# Versionamento
+versioning:
+  format: semantic # MAJOR.MINOR.PATCH
+  current: 2.0.0
+  release_schedule: "Q1 2027"
