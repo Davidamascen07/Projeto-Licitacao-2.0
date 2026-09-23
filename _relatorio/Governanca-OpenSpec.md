@@ -7,18 +7,6 @@
 
 ---
 
-## Correção Importante
-
-Uma versão anterior deste processo foi montada manualmente (pasta `.openspec/` com um template próprio, sem CLI). Descobrimos que **OpenSpec é uma ferramenta real** com CLI própria (Node.js), não apenas um conceito. A estrutura manual foi **descartada** e substituída pela estrutura oficial, criada com:
-
-```bash
-npx @fission-ai/openspec@latest init --tools claude --language pt-BR
-```
-
-Isso já foi feito neste repositório. A pasta correta agora é `openspec/` (sem ponto), não `.openspec/`.
-
----
-
 ## Objetivo
 
 Definir como o projeto será conduzido a partir de agora usando o **OpenSpec CLI** como framework de SDD (Spec-Driven Development), conforme decidido na reunião de 22/09/2026. Este documento é a regra de convivência do time em torno de documentação e mudanças — não trata de arquitetura ou escopo (ver os outros dois relatórios desta pasta).
@@ -58,33 +46,50 @@ Também foi criada integração com Claude Code em `.claude/skills/` e `.claude/
 ```
 1. Ideia/necessidade identificada
         ↓
-2. openspec new change <nome-da-mudança>
-   (ou, dentro do Claude Code: /opsx:propose "sua ideia")
+   (opcional) /opsx:explore — discutir/esclarecer antes de formalizar
         ↓
-3. Preencher proposal.md (o "por quê" e quais capacidades/specs são afetadas)
-   → openspec instructions proposal --change <nome>  (gera instruções guiadas)
+2. /opsx:propose "sua ideia"
+   (cria o change e gera proposal.md + deltas de spec em um passo só)
         ↓
-4. Preencher specs/ (deltas), design.md e tasks.md conforme necessário
+3. Revisar/ajustar os artefatos gerados (proposal.md, design.md, tasks.md)
+   → /opsx:update se precisar revisar depois de feedback
         ↓
-5. openspec validate --change <nome>
-   (garante que a proposta está completa e consistente)
+4. Abrir PR só com a pasta do change (sem código) para revisão do time
         ↓
-6. Abrir PR só com a pasta do change (sem código) para revisão do time
+5. Discussão/ajustes no PR
         ↓
-7. Discussão/ajustes no PR
+6. Aprovado → /opsx:apply
+   (implementa o código seguindo tasks.md, em branch própria)
         ↓
-8. Aprovado → implementação em branch própria, seguindo tasks.md
+7. PR de código é revisado contra os critérios definidos no change
         ↓
-9. PR de código é revisado contra os critérios definidos no change
-        ↓
-10. Merge → openspec archive <nome>
-    (mescla os deltas em openspec/specs/ e move o change para openspec/changes/archive/)
+8. Merge → /opsx:sync (mescla deltas nas specs principais) → /opsx:archive
+   (arquiva o change em openspec/changes/archive/)
 ```
 
-### Comandos Úteis do Dia a Dia
+*Todos os comandos acima são do Claude (`/opsx:*`). Quem preferir o terminal puro usa os equivalentes do CLI — ver tabela de referência abaixo.*
+
+### Comandos do Dia a Dia — Via Claude (Forma Que a Equipe Vai Usar)
+
+Na prática, a equipe não vai digitar os comandos do CLI diretamente — vai usar os comandos de slash dentro do Claude (Claude Code ou qualquer IDE com Claude integrado, ex: VSCode, Cursor). Esses comandos já chamam o CLI por trás e guiam o preenchimento dos artefatos:
+
+| Comando (dentro do Claude) | Equivalente no fluxo | O que faz |
+| --- | --- | --- |
+| `/opsx:explore` | (antes de `new change`) | Modo de pensar/discutir a ideia antes de formalizar — não implementa nada, só ajuda a esclarecer requisitos. Útil para debater um problema antes de virar proposta |
+| `/opsx:propose "sua ideia"` | `openspec new change` + preencher `proposal.md` | Cria o change e já gera `proposal.md` (e os deltas de spec, se aplicável) em um passo só. **É o comando principal para começar algo novo** |
+| `/opsx:update` | editar `proposal.md`/`design.md`/`tasks.md` manualmente | Revisa artefatos de planejamento já existentes, mantendo tudo coerente. Nunca mexe em código |
+| `/opsx:apply` | implementar seguindo `tasks.md` | Implementa as tarefas do change (a parte de código de fato, depois que a proposta foi aprovada) |
+| `/opsx:sync` | mesclar deltas manualmente | Sincroniza os deltas de spec do change para as specs principais (`openspec/specs/`) de forma inteligente |
+| `/opsx:archive` | `openspec archive <nome>` | Arquiva o change concluído e mescla as specs definitivamente |
+
+**Funciona igual em outras IDEs com Claude**: esses comandos (`.claude/commands/opsx/`) não são exclusivos do terminal Claude Code — funcionam da mesma forma em qualquer editor com integração Claude (VSCode, JetBrains, etc.), já que o que muda é só onde o Claude roda, não o comando em si. Se alguém do time preferir outra ferramenta de IA (Cursor, por exemplo), o OpenSpec também tem integração própria — nesse caso, rodar `openspec init --tools cursor` (ou o tool correspondente) gera os comandos equivalentes para aquela ferramenta.
+
+### Comandos do CLI (Referência Técnica)
+
+Caso alguém prefira rodar direto no terminal, sem passar pelo Claude:
 
 | Comando | O que faz |
-|---|---|
+| --- | --- |
 | `openspec new change <nome>` | Cria uma nova proposta de mudança |
 | `openspec status --change <nome>` | Mostra o progresso dos artefatos (proposal, specs, design, tasks) |
 | `openspec instructions <artefato> --change <nome>` | Gera instruções guiadas para preencher cada artefato |
@@ -95,20 +100,18 @@ Também foi criada integração com Claude Code em `.claude/skills/` e `.claude/
 | `openspec archive <nome>` | Arquiva um change concluído e mescla as specs |
 | `openspec view` | Dashboard interativo de specs e mudanças |
 
-No Claude Code, os comandos `/opsx:propose`, `/opsx:explore`, `/opsx:apply`, `/opsx:archive`, `/opsx:sync` e `/opsx:update` fazem o mesmo fluxo de forma guiada.
-
 ---
 
 ## Papéis (Provisório)
 
 Como a equipe ainda é pequena e os papéis não foram formalmente atribuídos em reunião, esta seção é uma sugestão a confirmar:
 
-| Responsabilidade | Sugestão | Confirmar em reunião? |
-|---|---|---|
-| Aprovar changes de produto/escopo | Danielle | Sim |
-| Aprovar changes técnicos/arquitetura | DAVID | Sim |
-| Validar viabilidade de changes envolvendo IA/ML | Andre | Sim |
-| Manter `openspec/config.yaml` e convenções do time | A definir | Sim |
+| Responsabilidade                                      | Sugestão | Confirmar em reunião? |
+| ----------------------------------------------------- | --------- | ---------------------- |
+| Aprovar changes de produto/escopo                     | Danielle  | Sim                    |
+| Aprovar changes técnicos/arquitetura                 | David     | Sim                    |
+| Validar viabilidade de changes envolvendo IA/ML       | Andre     | Sim                    |
+| Manter`openspec/config.yaml` e convenções do time | A definir | Sim                    |
 
 ---
 
@@ -116,8 +119,8 @@ Como a equipe ainda é pequena e os papéis não foram formalmente atribuídos e
 
 Antes de qualquer feature nova, o mais importante agora é **documentar o que já existe** no projeto v1, para servir de base de decisão (reaproveitar ou não). Sugestão de primeiros changes:
 
-- [ ] `openspec new change documentar-estado-atual` — descrição do que já existe hoje: pipeline de embeddings/reranker, integração atual com compras.gov.br/PNCP (incluindo `scripts/collect_pncp.py`), estrutura do `app.py`, baseline de 50 editais. Pode usar `skip_specs: true` se for só documentação, sem propor mudança de comportamento.
-- [ ] `openspec new change registrar-ideias-reuniao` — registrar as ideias discutidas em 22/09 (resumo automático, checklist de habilitação, validador de elegibilidade, alertas) como propostas não aprovadas, para servirem de matéria-prima da próxima reunião de escopo
+- [ ] `/opsx:propose "documentar o estado atual do projeto v1"` — descrição do que já existe hoje: pipeline de embeddings/reranker, integração atual com compras.gov.br/PNCP (incluindo `scripts/collect_pncp.py`), estrutura do `app.py`, baseline de 50 editais. Pode usar `skip_specs: true` se for só documentação, sem propor mudança de comportamento.
+- [ ] `/opsx:propose "registrar as ideias discutidas na reuniao de 22/09"` — registrar as ideias discutidas em 22/09 (resumo automático, checklist de habilitação, validador de elegibilidade, alertas) como propostas não aprovadas, para servirem de matéria-prima da próxima reunião de escopo
 
 Esses dois changes não exigem decisão de arquitetura nem orçamento — são só documentação do que já existe e do que foi discutido.
 
@@ -149,8 +152,8 @@ Change: openspec/changes/<nome-do-change>/
 ### Ciclo de Vida de um Change
 
 ```
-Criado (new change) → Em progresso (proposal/specs/design/tasks) → Validado (validate)
-   → Revisado (PR) → Implementado → Arquivado (archive, specs mescladas)
+Criado (/opsx:propose) → Em progresso (proposal/specs/design/tasks, ajustado via /opsx:update)
+   → Revisado (PR) → Implementado (/opsx:apply) → Arquivado (/opsx:sync + /opsx:archive)
 ```
 
 ---
@@ -173,7 +176,7 @@ Criado (new change) → Em progresso (proposal/specs/design/tasks) → Validado 
 ## Próxima Ação
 
 1. Validar este processo de governança com o time (concordam com o fluxo? Com os papéis sugeridos?)
-2. Rodar `openspec new change documentar-estado-atual` e `openspec new change registrar-ideias-reuniao`
+2. Rodar `/opsx:propose "documentar o estado atual do projeto v1"` e `/opsx:propose "registrar as ideias discutidas na reuniao de 22/09"`
 3. Só depois seguir para a reunião de definição de escopo e arquitetura (ver [Próximos Passos](./Proximos-Passos-Definicoes.md))
 
 ---

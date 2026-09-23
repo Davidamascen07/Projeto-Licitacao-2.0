@@ -132,7 +132,7 @@ Independente das decisões acima, já é possível:
 
 ## Notas
 
-Este documento deve ser atualizado conforme as pendências forem resolvidas em reunião. Quando uma decisão for tomada, ela deve virar um change em `openspec/changes/` (via `openspec new change <nome>`), não apenas uma anotação aqui.
+Este documento deve ser atualizado conforme as pendências forem resolvidas em reunião. Quando uma decisão for tomada, ela deve virar um change em `openspec/changes/` (via `/opsx:propose "..."` no Claude, ou `openspec new change <nome>` no terminal), não apenas uma anotação aqui.
 
 ---
 

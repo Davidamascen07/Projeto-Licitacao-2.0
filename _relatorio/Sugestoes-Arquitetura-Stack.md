@@ -107,7 +107,7 @@ Estes itens (mencionados na reunião — alertas por email, validação de elegi
 
 ## Como Formalizar a Decisão
 
-Depois que a equipe decidir em reunião, a decisão deve ser registrada como um change no OpenSpec (`openspec new change definir-stack-mvp`), não apenas ficar arquivada aqui. Isso mantém rastreabilidade de por que cada escolha foi feita.
+Depois que a equipe decidir em reunião, a decisão deve ser registrada como um change no OpenSpec (`/opsx:propose "definir stack do MVP"` no Claude, ou `openspec new change definir-stack-mvp` no terminal), não apenas ficar arquivada aqui. Isso mantém rastreabilidade de por que cada escolha foi feita.
 
 ---
 
