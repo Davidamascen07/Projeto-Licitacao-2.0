@@ -263,7 +263,10 @@ feat: descrição curta
 
 Change: openspec/changes/<nome-do-change>/
 Proposta: #<numero-do-pr-de-proposta>
+Closes #<numero-da-issue>
 ```
+
+O `Closes #<numero>` fecha automaticamente a Issue de rastreamento quando o PR é mergeado.
 
 ### Ciclo de Vida de um Change
 
@@ -271,6 +274,44 @@ Proposta: #<numero-do-pr-de-proposta>
 Criado (/opsx:propose) → Em progresso (proposal/specs/design/tasks, ajustado via /opsx:update)
    → Revisado (PR) → Implementado (/opsx:apply) → Arquivado (/opsx:sync + /opsx:archive)
 ```
+
+---
+
+## Rastreamento no GitHub Issues
+
+A pasta do change em `openspec/changes/<nome>/` continua sendo a **fonte de verdade** (conteúdo completo da proposta). A Issue no GitHub é só uma **vitrine de rastreamento** — não duplica o conteúdo, só linka e resume, para dar visibilidade de status sem precisar abrir o repositório toda vez.
+
+### Quando criar a Issue
+
+Junto com o PR de proposta (depois de rodar `/opsx:propose`). Uma Issue por change.
+
+### Como criar
+
+Use o template já configurado no repositório: **GitHub → Issues → New Issue → "Change (OpenSpec)"** (`.github/ISSUE_TEMPLATE/change.md`). Ele já vem com os campos certos: nome do change, link pro `proposal.md`, resumo e um checklist pra copiar do `tasks.md`.
+
+### Labels — Espelham o Ciclo de Vida do Change
+
+| Label | Quando aplicar |
+|---|---|
+| `proposta` | Change criado, PR de proposta aberto (label padrão do template) |
+| `em-revisao` | Time discutindo a proposta no PR |
+| `aprovada` | Proposta aceita, aguardando implementação |
+| `em-desenvolvimento` | `/opsx:apply` em andamento |
+| `implementada` | PR de código mergeado, change arquivado |
+
+Quem move a Issue de label é quem está com a "posse" daquele change no momento (proponente move pra `em-revisao` ao abrir o PR; quem aprova move pra `aprovada`; quem implementa move pra `em-desenvolvimento`, depois `implementada` ao mergear).
+
+### Checklist de Tarefas
+
+Copie os itens de `tasks.md` para o corpo da Issue como checklist markdown (`- [ ]`). Isso permite acompanhar progresso de implementação direto na lista de Issues do GitHub, sem precisar abrir a branch. Se `tasks.md` mudar (via `/opsx:update`), atualize a checklist da Issue também — evita as duas fontes ficarem dessincronizadas.
+
+### Quadro Kanban (GitHub Projects)
+
+Existe um Project no repositório com colunas espelhando os labels acima, pra visão geral do time (útil sendo remoto — dá pra ver o status de tudo sem perguntar no chat). Arraste o card conforme o label muda, ou automatize a movimentação por label nas configurações do Project.
+
+### Fechamento da Issue
+
+A Issue é fechada automaticamente quando o **PR de código** é mergeado, se a descrição do PR contiver `Closes #<numero-da-issue>` (convenção padrão do GitHub).
 
 ---
 
