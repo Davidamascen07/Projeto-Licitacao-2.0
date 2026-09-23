@@ -112,7 +112,7 @@ Não dá para definir arquitetura sem saber o escopo do MVP, e não dá para est
 
 Independente das decisões acima, já é possível:
 
-- ✅ Usar o **OpenSpec** (`.openspec/`) para documentar o que já existe no projeto (o pipeline de embeddings/reranker do André, a integração atual com compras.gov.br, etc.) — ver [Governança OpenSpec](./Governanca-OpenSpec.md)
+- ✅ Usar o **OpenSpec** (`openspec/`) para documentar o que já existe no projeto (o pipeline de embeddings/reranker do André, a integração atual com compras.gov.br, etc.) — ver [Governança OpenSpec](./Governanca-OpenSpec.md)
 - ✅ Registrar, como specs, as ideias discutidas na reunião — mesmo sem estarem aprovadas, ficam documentadas como "Proposta" para discussão
 - ✅ Organizar as pendências acima como issues no GitHub, uma por tópico
 
@@ -132,7 +132,7 @@ Independente das decisões acima, já é possível:
 
 ## Notas
 
-Este documento deve ser atualizado conforme as pendências forem resolvidas em reunião. Quando uma decisão for tomada, ela deve virar uma spec em `.openspec/specs/` (ou um registro de decisão em `.openspec/architecture/`), não apenas uma anotação aqui.
+Este documento deve ser atualizado conforme as pendências forem resolvidas em reunião. Quando uma decisão for tomada, ela deve virar um change em `openspec/changes/` (via `openspec new change <nome>`), não apenas uma anotação aqui.
 
 ---
 

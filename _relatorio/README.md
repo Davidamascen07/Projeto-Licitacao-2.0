@@ -2,7 +2,7 @@
 
 **Última atualização**: 23 de setembro de 2026
 
-Esta pasta reúne a organização atual do projeto: o que está pendente de decisão, sugestões para debate e como o time vai trabalhar com OpenSpec a partir de agora. **Nada aqui é decisão final** — decisões viram specs em `.openspec/`.
+Esta pasta reúne a organização atual do projeto: o que está pendente de decisão, sugestões para debate e como o time vai trabalhar com OpenSpec a partir de agora. **Nada aqui é decisão final** — decisões viram changes em `openspec/` (via OpenSpec CLI).
 
 ---
 
@@ -27,7 +27,7 @@ Opções de frontend, backend e banco de dados para servir de ponto de partida n
 2. Criar as duas specs de documentação do estado atual (indicadas na governança)
 3. Agendar reunião usando `Proximos-Passos-Definicoes.md` como pauta
 4. Usar `Sugestoes-Arquitetura-Stack.md` como material de apoio nessa reunião
-5. Toda decisão tomada vira spec em `.openspec/specs/` ou `.openspec/architecture/`
+5. Toda decisão tomada vira um change em `openspec/changes/` (`openspec new change <nome>`)
 
 ---
 

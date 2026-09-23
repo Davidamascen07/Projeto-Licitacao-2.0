@@ -107,7 +107,7 @@ Estes itens (mencionados na reunião — alertas por email, validação de elegi
 
 ## Como Formalizar a Decisão
 
-Depois que a equipe decidir em reunião, a decisão deve ser registrada como um documento de arquitetura em `.openspec/architecture/` (ex: `ARCH-001-stack-mvp.md`), não apenas ficar arquivada aqui. Isso mantém rastreabilidade de por que cada escolha foi feita.
+Depois que a equipe decidir em reunião, a decisão deve ser registrada como um change no OpenSpec (`openspec new change definir-stack-mvp`), não apenas ficar arquivada aqui. Isso mantém rastreabilidade de por que cada escolha foi feita.
 
 ---
 
