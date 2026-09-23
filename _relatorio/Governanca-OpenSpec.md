@@ -69,18 +69,80 @@ Também foi criada integração com Claude Code em `.claude/skills/` e `.claude/
 
 *Todos os comandos acima são do Claude (`/opsx:*`). Quem preferir o terminal puro usa os equivalentes do CLI — ver tabela de referência abaixo.*
 
+### Exemplo Completo — Do Zero até o Merge
+
+Digamos que alguém do time quer propor um validador de elegibilidade. Assim ficaria na prática:
+
+**1. Discussão informal (antes de qualquer artefato)**
+
+No Slack ou numa call, a pessoa comenta a ideia. Se for algo que ainda precisa ser pensado (não só documentado), pode abrir o Claude e rodar:
+
+```
+/opsx:explore
+"Estou pensando em um validador de elegibilidade — o usuário responde
+3 perguntas e o sistema diz se vale a pena se candidatar ao edital.
+Faz sentido? O que estou esquecendo?"
+```
+
+Isso só conversa/pensa junto — **não cria nenhum arquivo ainda**. Serve pra amadurecer a ideia antes de formalizar.
+
+**2. Formalizar a proposta**
+
+Quando a ideia já está clara, roda:
+
+```
+/opsx:propose "validador de elegibilidade: usuário responde 3 perguntas
+(atua em saúde? está no estado do edital? pode fornecer o produto?) e
+o sistema retorna se pode ou não se candidatar"
+```
+
+Isso cria a pasta `openspec/changes/adicionar-validador-elegibilidade/` com `proposal.md`, `design.md`, `tasks.md` e os deltas de spec — **tudo em markdown, zero código**.
+
+**3. Abrir o PR de proposta**
+
+```bash
+git checkout -b proposta/validador-elegibilidade
+git add openspec/changes/adicionar-validador-elegibilidade/
+git commit -m "proposta: validador de elegibilidade"
+git push origin proposta/validador-elegibilidade
+```
+
+Título do PR: **`[PROPOSTA] Validador de elegibilidade`**
+
+Nesse PR, o time comenta só sobre a ideia: "as 3 perguntas são suficientes?", "e se a empresa atuar em mais de um estado?", "o critério de aceite cobre o caso X?". Ninguém está revisando código, porque não existe código ainda.
+
+**4. Ajustes (se necessário)**
+
+Se o time pedir mudanças na proposta, quem criou roda `/opsx:update` para ajustar `proposal.md`/`design.md`/`tasks.md` e atualiza o mesmo PR (não cria um novo).
+
+**5. Aprovado → implementação**
+
+Só depois do PR de proposta ser aprovado e mergeado (ou aprovado sem merge, dependendo do fluxo que o time escolher — ver convenção abaixo), alguém roda:
+
+```
+/opsx:apply --change adicionar-validador-elegibilidade
+```
+
+Isso implementa o código seguindo o `tasks.md` já aprovado. Abre-se um **segundo PR**, agora sim com código:
+
+Título do PR: **`[CÓDIGO] Validador de elegibilidade`** (referenciando o PR/change de proposta)
+
+**6. Merge final**
+
+Depois do PR de código aprovado e mergeado, roda `/opsx:sync` (mescla os deltas nas specs principais) e `/opsx:archive` (move o change para `openspec/changes/archive/`).
+
 ### Comandos do Dia a Dia — Via Claude (Forma Que a Equipe Vai Usar)
 
 Na prática, a equipe não vai digitar os comandos do CLI diretamente — vai usar os comandos de slash dentro do Claude (Claude Code ou qualquer IDE com Claude integrado, ex: VSCode, Cursor). Esses comandos já chamam o CLI por trás e guiam o preenchimento dos artefatos:
 
-| Comando (dentro do Claude) | Equivalente no fluxo | O que faz |
-| --- | --- | --- |
-| `/opsx:explore` | (antes de `new change`) | Modo de pensar/discutir a ideia antes de formalizar — não implementa nada, só ajuda a esclarecer requisitos. Útil para debater um problema antes de virar proposta |
-| `/opsx:propose "sua ideia"` | `openspec new change` + preencher `proposal.md` | Cria o change e já gera `proposal.md` (e os deltas de spec, se aplicável) em um passo só. **É o comando principal para começar algo novo** |
-| `/opsx:update` | editar `proposal.md`/`design.md`/`tasks.md` manualmente | Revisa artefatos de planejamento já existentes, mantendo tudo coerente. Nunca mexe em código |
-| `/opsx:apply` | implementar seguindo `tasks.md` | Implementa as tarefas do change (a parte de código de fato, depois que a proposta foi aprovada) |
-| `/opsx:sync` | mesclar deltas manualmente | Sincroniza os deltas de spec do change para as specs principais (`openspec/specs/`) de forma inteligente |
-| `/opsx:archive` | `openspec archive <nome>` | Arquiva o change concluído e mescla as specs definitivamente |
+| Comando (dentro do Claude)    | Equivalente no fluxo                                         | O que faz                                                                                                                                                              |
+| ----------------------------- | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `/opsx:explore`             | (antes de`new change`)                                     | Modo de pensar/discutir a ideia antes de formalizar — não implementa nada, só ajuda a esclarecer requisitos. Útil para debater um problema antes de virar proposta |
+| `/opsx:propose "sua ideia"` | `openspec new change` + preencher `proposal.md`          | Cria o change e já gera`proposal.md` (e os deltas de spec, se aplicável) em um passo só. **É o comando principal para começar algo novo**                 |
+| `/opsx:update`              | editar`proposal.md`/`design.md`/`tasks.md` manualmente | Revisa artefatos de planejamento já existentes, mantendo tudo coerente. Nunca mexe em código                                                                         |
+| `/opsx:apply`               | implementar seguindo`tasks.md`                             | Implementa as tarefas do change (a parte de código de fato, depois que a proposta foi aprovada)                                                                       |
+| `/opsx:sync`                | mesclar deltas manualmente                                   | Sincroniza os deltas de spec do change para as specs principais (`openspec/specs/`) de forma inteligente                                                             |
+| `/opsx:archive`             | `openspec archive <nome>`                                  | Arquiva o change concluído e mescla as specs definitivamente                                                                                                          |
 
 **Funciona igual em outras IDEs com Claude**: esses comandos (`.claude/commands/opsx/`) não são exclusivos do terminal Claude Code — funcionam da mesma forma em qualquer editor com integração Claude (VSCode, JetBrains, etc.), já que o que muda é só onde o Claude roda, não o comando em si. Se alguém do time preferir outra ferramenta de IA (Cursor, por exemplo), o OpenSpec também tem integração própria — nesse caso, rodar `openspec init --tools cursor` (ou o tool correspondente) gera os comandos equivalentes para aquela ferramenta.
 
@@ -88,17 +150,17 @@ Na prática, a equipe não vai digitar os comandos do CLI diretamente — vai us
 
 Caso alguém prefira rodar direto no terminal, sem passar pelo Claude:
 
-| Comando | O que faz |
-| --- | --- |
-| `openspec new change <nome>` | Cria uma nova proposta de mudança |
-| `openspec status --change <nome>` | Mostra o progresso dos artefatos (proposal, specs, design, tasks) |
-| `openspec instructions <artefato> --change <nome>` | Gera instruções guiadas para preencher cada artefato |
-| `openspec validate --change <nome>` | Valida se a proposta está completa |
-| `openspec list` | Lista mudanças em andamento |
-| `openspec list --specs` | Lista as specs já aprovadas (inventário de capacidades do sistema) |
-| `openspec show <nome>` | Mostra o conteúdo de uma mudança ou spec |
-| `openspec archive <nome>` | Arquiva um change concluído e mescla as specs |
-| `openspec view` | Dashboard interativo de specs e mudanças |
+| Comando                                              | O que faz                                                            |
+| ---------------------------------------------------- | -------------------------------------------------------------------- |
+| `openspec new change <nome>`                       | Cria uma nova proposta de mudança                                   |
+| `openspec status --change <nome>`                  | Mostra o progresso dos artefatos (proposal, specs, design, tasks)    |
+| `openspec instructions <artefato> --change <nome>` | Gera instruções guiadas para preencher cada artefato               |
+| `openspec validate --change <nome>`                | Valida se a proposta está completa                                  |
+| `openspec list`                                    | Lista mudanças em andamento                                         |
+| `openspec list --specs`                            | Lista as specs já aprovadas (inventário de capacidades do sistema) |
+| `openspec show <nome>`                             | Mostra o conteúdo de uma mudança ou spec                           |
+| `openspec archive <nome>`                          | Arquiva um change concluído e mescla as specs                       |
+| `openspec view`                                    | Dashboard interativo de specs e mudanças                            |
 
 ---
 
@@ -133,20 +195,41 @@ Esses dois changes não exigem decisão de arquitetura nem orçamento — são s
 - kebab-case, verbo + objeto: `adicionar-autenticacao-jwt`, `documentar-estado-atual`
 - Nomes de capacidades/specs seguem o inventário do projeto (`openspec list --specs`) — reaproveitar nome existente em vez de criar quase-duplicata
 
-### Branches
+### Branches — Prefixo Diferencia Proposta de Código
 
-```
-feature/<nome-do-change>
-```
+Como cada change gera **dois PRs separados** (um só com os documentos da proposta, outro com o código), o prefixo da branch já identifica qual é qual:
+
+| Tipo de PR | Prefixo da branch | Exemplo | Contém |
+|---|---|---|---|
+| Proposta (documentos) | `proposta/<nome-do-change>` | `proposta/validador-elegibilidade` | Só `openspec/changes/<nome>/` (markdown) |
+| Código (implementação) | `feature/<nome-do-change>` | `feature/validador-elegibilidade` | Código de verdade (services/, tests/, etc.) |
+
+### Título do PR
+
+| Tipo de PR | Título | Exemplo |
+|---|---|---|
+| Proposta | `[PROPOSTA] <descrição curta>` | `[PROPOSTA] Validador de elegibilidade` |
+| Código | `[CÓDIGO] <descrição curta>` | `[CÓDIGO] Validador de elegibilidade` |
+
+Isso deixa visível na lista de PRs do GitHub, de relance, qual é discussão de ideia e qual é revisão de implementação — sem precisar abrir cada um para saber.
+
+**Opcional, se o time quiser mais organização**: criar labels no GitHub (`proposta` e `código`) e aplicar em cada PR, além do prefixo no título. Facilita filtrar (`is:pr label:proposta is:open` mostra só propostas em aberto, por exemplo).
 
 ### Commits e PRs
 
 Todo commit relacionado a um change referencia a pasta:
 
 ```
+# No PR de proposta
+proposta: descrição curta
+
+Change: openspec/changes/<nome-do-change>/
+
+# No PR de código
 feat: descrição curta
 
 Change: openspec/changes/<nome-do-change>/
+Proposta: #<numero-do-pr-de-proposta>
 ```
 
 ### Ciclo de Vida de um Change
