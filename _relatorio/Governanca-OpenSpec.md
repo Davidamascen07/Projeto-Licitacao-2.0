@@ -59,12 +59,16 @@ Também foi criada integração com Claude Code em `.claude/skills/` e `.claude/
 5. Discussão/ajustes no PR
         ↓
 6. Aprovado → /opsx:apply
-   (implementa o código seguindo tasks.md, em branch própria)
+   (implementa o código seguindo tasks.md, na branch feature/<nome>)
         ↓
-7. PR de código é revisado contra os critérios definidos no change
+7. /opsx:sync + /opsx:archive (ainda na mesma branch, antes do PR)
+   → git push imediatamente após o archive, para não deixar só local
         ↓
-8. Merge → /opsx:sync (mescla deltas nas specs principais) → /opsx:archive
-   (arquiva o change em openspec/changes/archive/)
+8. Abrir PR de código (contém: código + specs/ atualizado + change arquivado)
+        ↓
+9. PR de código é revisado contra os critérios definidos no change
+        ↓
+10. Merge → main fica com tudo consistente de uma vez
 ```
 
 *Todos os comandos acima são do Claude (`/opsx:*`). Quem preferir o terminal puro usa os equivalentes do CLI — ver tabela de referência abaixo.*
@@ -135,6 +139,16 @@ Importante: `/opsx:sync` e `/opsx:archive` rodam **antes** de abrir o PR de cód
 ```
 
 Isso atualiza `openspec/specs/` com a spec definitiva e move a pasta do change para `openspec/changes/archive/`. Tudo isso entra no mesmo commit/branch do código.
+
+**Assim que arquivar, já envie a branch para o GitHub** — não deixe o `archive` só local. Evita perder trabalho e deixa o PR pronto pra abrir na hora:
+
+```bash
+git add .
+git commit -m "feat: validador de elegibilidade
+
+Change: openspec/changes/archive/<data>-adicionar-validador-elegibilidade/"
+git push origin feature/validador-elegibilidade
+```
 
 **7. Abrir o PR de código**
 
