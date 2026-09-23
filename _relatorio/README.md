@@ -11,7 +11,12 @@ Esta pasta reúne a organização atual do projeto: o que está pendente de deci
 ### [Governanca-OpenSpec.md](./Governanca-OpenSpec.md)
 Como o projeto será conduzido a partir de agora: toda feature/mudança passa por uma spec no OpenSpec antes de virar código. Define fluxo, papéis provisórios e convenções.
 
-**Leia primeiro** — define o processo que os outros dois documentos vão seguir.
+**Leia primeiro** — define o processo que os outros documentos vão seguir.
+
+### [Guia-OpenSpec-Iniciantes.md](./Guia-OpenSpec-Iniciantes.md)
+Passo a passo prático para quem nunca usou OpenSpec: instalação, como confirmar que está tudo configurado, comandos do dia a dia via Claude (`/opsx:propose`, etc.) e via terminal, além de perguntas comuns.
+
+**Use este se for sua primeira vez** — não precisa ler `Governanca-OpenSpec.md` inteiro pra começar a usar.
 
 ### [Proximos-Passos-Definicoes.md](./Proximos-Passos-Definicoes.md)
 Lista as perguntas em aberto (escopo do MVP, arquitetura, PoC, modelo de negócio) que precisam ser resolvidas em reunião. Não toma decisões — organiza o que falta decidir e em que ordem.

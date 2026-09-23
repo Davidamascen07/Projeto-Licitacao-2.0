@@ -5,6 +5,8 @@
 **Aplica-se a**: `Projeto-Licitacao-2.0` a partir de agora
 **Ferramenta**: [OpenSpec CLI](https://github.com/Fission-AI/OpenSpec) (`@fission-ai/openspec`) — instalado e inicializado neste repositório em `openspec/`
 
+> **Nunca usou OpenSpec?** Comece por [`Guia-OpenSpec-Iniciantes.md`](./Guia-OpenSpec-Iniciantes.md) — tem instalação e primeiros comandos passo a passo. Este documento aqui é sobre o *processo* do time (regras, papéis, convenção de PR), não um tutorial de ferramenta.
+
 ---
 
 ## Objetivo
